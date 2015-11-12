@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Administrator Panel</title>
+    </h:head>
+    <h:body>
+
+        <!--Administrator Main --> 
+        <h3 style="color: green">Administrator Panel</h3>
+        &nbsp;
+        
+        <p> <h2 style="color: greenyellow">Users</h2> </p>
+        
+        <hr></hr>
+        <!-- Users list -->
+         <h:form>
+        <h:panelGrid id="panel" columns="3" border="0" cellpadding="0" cellspacing="2">
+            <h:commandButton value="Aministrators List" action="administrator_lists?faces-redirect=true" /> 
+            <h:commandButton value="Managers List" action="manager_lists?faces-redirect=true" />
+            <h:commandButton value="Attendants List" action="attendant_lists?faces-redirect=true" />
+        </h:panelGrid>
+             <p></p>
+        <h:panelGrid id="panel_create" columns="3" border="0" cellpadding="0" cellspacing="2">
+            <h:commandButton value="Create Aministrator" action="administrator_create?faces-redirect=true" /> 
+            <h:commandButton value="Create Manager" action="manager_create?faces-redirect=true" />
+            <h:commandButton value="Create Attendant" action="attendant_create?faces-redirect=true" />
+        </h:panelGrid>
+            <hr></hr> 
+         </h:form>
+        <p> <h2 style="color: greenyellow">Events</h2> </p>
+        
+        <hr></hr>
+        <!-- Users list -->
+         <h:form>
+        <h:panelGrid id="panel_event" columns="3" border="0" cellpadding="0" cellspacing="2">
+            <h:commandButton value="All Events List" action="event_lists?faces-redirect=true" /> 
+           
+        </h:panelGrid>
+                <h:panelGrid id="createEvent" columns="3" border="0" cellpadding="0" cellspacing="2">
+            <h:commandButton value="New Event" action="event_create?faces-redirect=true" /> 
+           
+        </h:panelGrid>
+         </h:form>
+        <hr></hr>
+        <p> <h2 style="color: greenyellow">Categories</h2> </p>
+        
+        <hr></hr>
+        <!-- Categorys list -->
+         <h:form>
+        <h:panelGrid id="categoryLists" columns="3" border="0" cellpadding="0" cellspacing="2">
+            <h:commandButton value="All Categorys List" action="category_lists?faces-redirect=true" /> 
+           
+        </h:panelGrid>
+             
+             <h:panelGrid id="createCategory" columns="3" border="0" cellpadding="0" cellspacing="2">
+            <h:commandButton value="New Category" action="category_create?faces-redirect=true" /> 
+           
+        </h:panelGrid>
+             
+    </h:form>
+        <hr></hr>
+        <h:form>
+            <h:commandButton value="Back" action="index.xhtml" />	
+        </h:form>
+
+    </h:body>
+</html>
+
