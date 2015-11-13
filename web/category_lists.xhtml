@@ -15,7 +15,7 @@
         <h:dataTable
             var="category" 
             summary="Table of users"
-            value="#{categoryManager.allCategories}"
+            value="#{administratorManagerForAll.allCategories}"
             rules="all"
             cellpadding="10">
             <h:column>
@@ -41,7 +41,7 @@
                     <h:outputText value="Nº Attendants" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{category.numberOfAttendants}" />
+                    <h:outputText value="#{categoryManager.getNumberAttendants(category.id)}" />
                 </h:form>
             </h:column>
             <h:column>
@@ -49,7 +49,7 @@
                     <h:outputText value="Nº Events" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{category.numberOfEvents}" />
+                    <h:outputText value="#{categoryManager.getNumberEvents(category.id)}" />
                 </h:form>
             </h:column>
 

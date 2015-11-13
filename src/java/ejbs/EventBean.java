@@ -173,6 +173,15 @@ public class EventBean {
 
     }
     
+    public void clearAllCategoriesInEvent(Long id) throws EntityDoesNotExistsException {
+        Event event = em.find(Event.class, id);
+            if (event == null){
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }
+        event.clearCategories();
+
+    }
+    
     public List<EventDTO> getCategoryEvents(Long categoryId) throws EntityDoesNotExistsException {
         try {
             Category category = em.find(Category.class, categoryId);
@@ -275,7 +284,12 @@ public class EventBean {
         }
     }
 
-    public List<CategoryDTO> getAllCategoriesOfEvent(Event event){
+    public List<CategoryDTO> getAllCategoriesOfEvent(Long id) throws EntityDoesNotExistsException{
+        
+        Event event = em.find(Event.class, id);
+            if (event == null){
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }
         List<Category> eventCategories = event.getCategories();
         return categoriesToDTOs(eventCategories);
     }

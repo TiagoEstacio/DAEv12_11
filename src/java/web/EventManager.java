@@ -18,6 +18,8 @@ import entities.Event;
 import exceptions.AttendantEnrolledException;
 import exceptions.AttendantNotEnrolledException;
 import exceptions.EntityDoesNotExistsException;
+import exceptions.EventEnrolledException;
+import exceptions.EventNotEnrolledException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -364,9 +366,9 @@ public class EventManager {
         }
     }
 */
-    public List<CategoryDTO> getAllCategoriesOfCurrentEvent(Event currentEvent) {
+    public List<CategoryDTO> getAllCategoriesOfCurrentEvent(Long id) {
         try {
-            return eventBean.getAllCategoriesOfEvent(currentEvent);
+            return eventBean.getAllCategoriesOfEvent(id);
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }
@@ -424,30 +426,26 @@ public class EventManager {
     public List<AttendantDTO> getAllEventAttendants(){
         return eventBean.getEventAttendants(currentEvent.getName());
     }
-    /*
-    public String updateEventCategories() {
-        for (Category cat : currentEvent.getCategories()) {
+    
+    public String updateEventCategories() throws EntityDoesNotExistsException, EventNotEnrolledException, EventEnrolledException {
+        for (CategoryDTO cat : eventBean.getAllCategoriesOfEvent(currentEvent.getId())) {
             eventBean.unrollEventInCategory(currentEvent.getId(), cat.getId());
         }
-        currentEvent.getCategories().clear();
+        eventBean.clearAllCategoriesInEvent(currentEvent.getId());
 
         for (String str : categoriesSelected) {
-            currentEvent.addCategory(categoryBean.getCategoryByName(str));
-            eventBean.enrollEventtInCategory(currentEvent.getId(), categoryBean.getCategoryByName(str).getId());
+            eventBean.enrollEventInCategory(currentEvent.getId(), (categoryBean.getCategoryByName(str)).getId());
         }
         //categoriesM.clear();
         return "event_lists?faces-redirect=true";
     }
 
     //para lista das categorias
-    public String addCategoriesList() {
+    public String addCategoriesList() throws EntityDoesNotExistsException, EventEnrolledException {
 
         for (String str : categoriesSelected) {
-            currentEvent.addCategory(categoryBean.getCategoryByName(str));
-            eventBean.enrollEventtInCategory(currentEvent.getId(), categoryBean.getCategoryByName(str).getId());
+            eventBean.enrollEventInCategory(currentEvent.getId(), (categoryBean.getCategoryByName(str)).getId());
         }
-
         return "administrator_panel?faces-redirect=true";
     }
 }
-*/}

@@ -249,5 +249,9 @@ public class Event implements Serializable {
     public void clearAttendants() {
         attendants.clear();
     }
+
+    public void clearCategories() {
+        categories.clear();
+    }
     
 }

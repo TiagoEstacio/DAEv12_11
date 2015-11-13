@@ -11,6 +11,7 @@ import entities.Administrator;
 import entities.Attendant;
 import entities.Category;
 import entities.Event;
+import exceptions.EntityDoesNotExistsException;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
@@ -224,6 +225,14 @@ public class CategoryManager {
 
     public void setEvDescription(String evDescription) {
         this.evDescription = evDescription;
+    }
+    
+    public int getNumberAttendants(Long id) throws EntityDoesNotExistsException {
+        return categoryBean.getNumberofAttendants(id);
+    }
+    
+    public int getNumberEvents(Long id) throws EntityDoesNotExistsException {
+        return categoryBean.getNumberofEvents(id);
     }
     
    
