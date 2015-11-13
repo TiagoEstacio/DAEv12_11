@@ -53,15 +53,17 @@ public class AttendantBean {
             throw new EJBException(e.getMessage());
         }
     }
-    
+    /**
+     * Devolve um attendant por username(único) 
+     * @param username
+     * @return attendantDTO
+     */
     public AttendantDTO getAttendant(String username) {
         try {
             List<Attendant> attendants = (List<Attendant>) em.createNamedQuery("getAllAttendants").getResultList();
             for (Attendant att : attendants){
                 
-                //System.out.println("Username: " + username);
-                //System.out.println(att.getUserName());
-                if (username.equals(att.getName())){
+                if (username.equals(att.getUserName())){
                     return attendantToDTO(att); 
                 }
             }
@@ -70,7 +72,26 @@ public class AttendantBean {
             throw new EJBException(e.getMessage());
         }
     }
-
+    /**
+     * Devolve um attendant por nome (não único)
+     * @param name
+     * @return attendantDTO
+     */
+    public AttendantDTO getAttendantByName(String name) {
+        try {
+            List<Attendant> attendants = (List<Attendant>) em.createNamedQuery("getAllAttendants").getResultList();
+            for (Attendant att : attendants){
+            
+                if (name.equals(att.getName())){
+                    return getAttendant(att.getUserName());
+                }
+            }
+            return null;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
     public void updateAttendant (Long id, String username, String password, String name, String email)throws EntityDoesNotExistsException, MyConstraintViolationException{
         try {
             Attendant attendant = em.find(Attendant.class, id);

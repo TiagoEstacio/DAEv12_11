@@ -396,10 +396,10 @@ public class EventManager {
         
         for (String str : attendantsSelected) {
             System.err.println("STRINGG: " + str);
-            System.out.println("LALALAL: " + attendantBean.getAttendant(str));
+            System.out.println("LALALAL: " + attendantBean.getAttendantByName(str));
             //System.out.println(currentEvent.getId());
             
-            attendantBean.enrollAttendantInEvent((attendantBean.getAttendant(str)).getId(), currentEvent.getId());
+            attendantBean.enrollAttendantInEvent((attendantBean.getAttendantByName(str)).getId(), currentEvent.getId());
         }
         actualizarAttendantsSelected();
         return "event_add_attendants?faces-redirect=true";
