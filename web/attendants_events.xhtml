@@ -65,7 +65,7 @@
                 <h:form>
                     <h:commandLink id="attendant_details_link" action="attendants_details?faces-redirect=true">
                         <h:outputText value="details" />
-                        <f:setPropertyActionListener target="#{attendantManager.currentAttendantM}" value="#{attendat}" />
+                        <f:setPropertyActionListener target="#{attendantManager.currentAttendantM}" value="#{attendant}" />
                     </h:commandLink>  
                 </h:form>
             </h:column>
@@ -77,7 +77,7 @@
                 <h:form>
                     <h:commandLink id="attendant_update_link" action="attendants_update?faces-redirect=true">
                         <h:outputText value="Update" />
-                        <f:setPropertyActionListener target="#{attendantManager.currentAttendantM}" value="#{attendat}"" />
+                        <f:setPropertyActionListener target="#{attendantManager.currentAttendantM}" value="#{attendant}" />
                     </h:commandLink>
                 </h:form>
             </h:column>

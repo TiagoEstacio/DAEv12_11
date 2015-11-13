@@ -3,6 +3,7 @@ package ejbs;
 
 import dtos.AdministratorDTO;
 import entities.Administrator;
+import entities.User;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
@@ -99,6 +100,21 @@ public class AdministratorBean {
                 throw new EntityDoesNotExistsException("There is no administrator with that id.");
             }
             em.remove(administrator);
+            
+        } catch (EntityDoesNotExistsException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        } 
+     }
+    
+    public void removeUser(Long id) throws EntityDoesNotExistsException{
+        try {
+            User user = em.find(User.class, id);
+            if (user == null) {
+                throw new EntityDoesNotExistsException("There is no user with that id.");
+            }
+            em.remove(user);
             
         } catch (EntityDoesNotExistsException e) {
             throw e;

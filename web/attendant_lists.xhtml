@@ -15,7 +15,7 @@
         <h:dataTable
             var="user" 
             summary="Table of users"
-            value="#{attendantManager.allAttendants}"
+            value="#{administratorManagerForAll.allAttendants}"
             rules="all"
             cellpadding="10">
             <h:column>
@@ -23,7 +23,7 @@
                     <h:outputText value="Username" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{user.userName}" />
+                    <h:outputText value="#{user.username}" />
                 </h:form>
             </h:column>
 
@@ -76,8 +76,8 @@
                 </f:facet>
                 <h:form>
 
-                    <h:commandLink id="user_remove_link" value="Remove" actionListener="#{attendantManager.removeUser}">
-                        <f:param name="deleteUserId" id="deleteUserId" value="#{user.userName}" />
+                    <h:commandLink id="user_remove_link" value="Remove" actionListener="#{administratorManagerForAll.removeUser}">
+                        <f:param name="deleteUserId" id="deleteUserId" value="#{user.username}" />
                     </h:commandLink>
                 </h:form> 
             </h:column>

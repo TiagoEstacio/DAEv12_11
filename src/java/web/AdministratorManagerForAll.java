@@ -6,6 +6,7 @@ import dtos.AttendantDTO;
 import dtos.CategoryDTO;
 import dtos.EventDTO;
 import dtos.ManagerDTO;
+import dtos.UserDTO;
 import ejbs.AdministratorBean;
 import ejbs.AttendantBean;
 import ejbs.CategoryBean;
@@ -45,7 +46,8 @@ public class AdministratorManagerForAll {
     
     private static final Logger logger = Logger.getLogger("web.AdministratorManagerForAll");
     
-    
+    private UserDTO newUser;
+    private UserDTO currentUser;
     private AdministratorDTO newAdministrator;
     private AdministratorDTO currentAdministrator;
     private ManagerDTO newManager;
@@ -118,6 +120,18 @@ public class AdministratorManagerForAll {
     public void removeAdministrator(ActionEvent event) {
         try {
             UIParameter param = (UIParameter) event.getComponent().findComponent("administratorId");
+            Long id = Long.parseLong(param.getValue().toString());
+            administratorBean.removeAdministrator(id);
+        } catch (EntityDoesNotExistsException e) {
+            FacesExceptionHandler.handleException(e, e.getMessage(), logger);
+        } catch (Exception e) {
+            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
+        }
+    }
+    
+    public void removeUser(ActionEvent event) {
+        try {
+            UIParameter param = (UIParameter) event.getComponent().findComponent("deleteUserId");
             Long id = Long.parseLong(param.getValue().toString());
             administratorBean.removeAdministrator(id);
         } catch (EntityDoesNotExistsException e) {
@@ -552,6 +566,22 @@ public class AdministratorManagerForAll {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////// GETTERS & SETTERS /////////
+
+    public UserDTO getNewUser() {
+        return newUser;
+    }
+
+    public void setNewUser(UserDTO newUser) {
+        this.newUser = newUser;
+    }
+
+    public UserDTO getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(UserDTO currentUser) {
+        this.currentUser = currentUser;
+    }
 
     public AdministratorDTO getNewAdministrator() {
         return newAdministrator;
