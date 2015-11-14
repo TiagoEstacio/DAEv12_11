@@ -8,9 +8,9 @@
     </h:head>
     <h:body>
         <h:dataTable
-            var="attendant_detail" 
-            summary="Table of attendants"
-            value="#{attendantManager.currentAttendantM.events}"
+            var="event" 
+            summary="Table of events"
+            value="#{administratorManagerForAll.allEventsOfCurrentAttendant}"
             rules="all"
             cellpadding="10">
             <h:column>
@@ -18,7 +18,7 @@
                     <h:outputText value="ID" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{attendant.id}" />
+                    <h:outputText value="#{event.id}" />
                 </h:form>
             </h:column>
 
@@ -27,45 +27,54 @@
                     <h:outputText value="Name" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{attendant.name}" />
+                    <h:outputText value="#{event.name}" />
                 </h:form>
             </h:column>
 
-            <h:column>
+             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Username" />
+                    <h:outputText value="Description" />
                 </f:facet>
-                <h:form>
-                    <h:outputText value="#{attendant.userName}" />
+                <h:form>  
+                    <h:outputText value="#{event.description}" />    
                 </h:form>
             </h:column>
             
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Email" />
+                    <h:outputText value="Start Date" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{attendant.email}" />
+                    <h:outputText value="#{event.startDate}" />
+                </h:form>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Finish Date" />
+                </f:facet>
+                <h:form>
+                    <h:outputText value="#{event.finishDate}" />
                 </h:form>
             </h:column>
 
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Number events" />
+                    <h:outputText value="Event open for presence" />
                 </f:facet>
                 <h:form>  
-                    <h:outputText value="#{attendant.numberOfEvents}" />    
+                    <h:outputText value="#{event.openForEnroll}" />    
                 </h:form>
             </h:column>
 
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Details" />
+                    <h:outputText value="Open for presence" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="attendant_details_link" action="attendants_details?faces-redirect=true">
+                    <h:commandLink id="event_presence_link" action="attendant_event_details?faces-redirect=true">
                         <h:outputText value="details" />
-                        <f:setPropertyActionListener target="#{attendantManager.currentAttendantM}" value="#{attendant}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentEvent}" value="#{event}" />
                     </h:commandLink>  
                 </h:form>
             </h:column>
@@ -75,7 +84,7 @@
                     <h:outputText value="Update" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="attendant_update_link" action="attendants_update?faces-redirect=true">
+                    <h:commandLink id="attendant_update_link" action="attendant_update?faces-redirect=true">
                         <h:outputText value="Update" />
                         <f:setPropertyActionListener target="#{attendantManager.currentAttendantM}" value="#{attendant}" />
                     </h:commandLink>
@@ -93,10 +102,11 @@
                     </h:commandLink>
                 </h:form> 
             </h:column>
+ 
         </h:dataTable>
         <hr></hr>
         <h:form>
-            <h:commandButton value="New Student" action="admins_student_create?faces-redirect=true" />
+            <h:commandButton value="Return to attendant panel" action="attendant_panel?faces-redirect=true" />
         </h:form>
         
         <hr></hr>
@@ -112,7 +122,7 @@
         <h:dataTable
             var="events" 
             summary="Table of events"
-            value="#{administratorManager.allEvents}"
+            value="#{administratorManagerForAll.allEvents}"
             rules="all"
             cellpadding="10">
             <h:column>

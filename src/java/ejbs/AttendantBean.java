@@ -339,10 +339,23 @@ public class AttendantBean {
     }
     
     //Devolver lista de eventsdto do currentAtendant
-    public List<EventDTO> getAllEventsOfAttendant(Attendant attendant){
-        List<Event> events = attendant.getEvents();
-        return eventsToDTOs(events);
+//    public List<EventDTO> getAllEventsOfAttendant(Attendant attendant){
+//        List<Event> events = attendant.getEvents();
+//        return eventsToDTOs(events);
+//    }
+    
+    //Devolver lista de eventsdto do currentAtendant
+    public List<EventDTO> getAllEventsOfAttendant(Long id) {
+        Attendant att = em.find(Attendant.class, id);
+        
+        if (att != null) {       
+             List<Event> events = new ArrayList<>();
+             events = att.getEvents();
+             return eventsToDTOs(events);
+        }
+        return null;
     }
+    
     
     EventDTO eventToDTO(Event event) {
         return new EventDTO(

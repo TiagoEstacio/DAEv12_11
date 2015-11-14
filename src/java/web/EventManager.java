@@ -349,10 +349,10 @@ public class EventManager {
         evStartDate = null;
         evFinishDate = null;
     }
-
+  
     public List<EventDTO> getAllEventsOfCurrentAttendant(Attendant currentAttendant) {
         try {
-            return attendantBean.getAllEventsOfAttendant(currentAttendant);
+            return attendantBean.getAllEventsOfAttendant(currentAttendant.getId());
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }

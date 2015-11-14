@@ -155,7 +155,7 @@ public class EventBean {
             throw new EJBException(e.getMessage());
         }
     }
-    
+     
     public List<AttendantDTO> getEventAttendants(String name) {
         Event event = getEventByName(name);
         if(event != null) {

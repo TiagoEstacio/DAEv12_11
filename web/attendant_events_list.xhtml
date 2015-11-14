@@ -4,17 +4,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Attendant Panel</title>
+        <title>Attendant Events</title>
     </h:head>
-    
     <h:body>
-        <h3 style="color: green">Attendant Panel</h3>
-
-        <hr></hr>
         <h:dataTable
-            var="attendant" 
-            summary="Table of attendants"
-            value="#{administratorManagerForAll.allAttendants}"
+            var="event" 
+            summary="Table of events"
+            value="#{administratorManagerForAll.allEventsOfCurrentAttendant}"
             rules="all"
             cellpadding="10">
             <h:column>
@@ -22,7 +18,7 @@
                     <h:outputText value="ID" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{attendant.id}" />
+                    <h:outputText value="#{event.id}" />
                 </h:form>
             </h:column>
 
@@ -31,57 +27,65 @@
                     <h:outputText value="Name" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{attendant.name}" />
+                    <h:outputText value="#{event.name}" />
                 </h:form>
             </h:column>
 
-            <h:column>
+             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Username" />
-                </f:facet>
-                <h:form>
-                    <h:outputText value="#{attendant.username}" />
-                </h:form>
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Email" />
-                </f:facet>
-                <h:form>
-                    <h:outputText value="#{attendant.email}" />
-                </h:form>
-            </h:column>
-
-            <!--
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Number events" />
+                    <h:outputText value="Description" />
                 </f:facet>
                 <h:form>  
-                    <h:outputText value="#{administratorManagerForAll.getAttendantNumberEvents(attendand.id)}" />    
+                    <h:outputText value="#{event.description}" />    
                 </h:form>
             </h:column>
-            -->
             
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="List of events" />
+                    <h:outputText value="Start Date" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="attendant_events_link" action="attendant_events_list?faces-redirect=true">
+                    <h:outputText value="#{event.startDate}" />
+                </h:form>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Finish Date" />
+                </f:facet>
+                <h:form>
+                    <h:outputText value="#{event.finishDate}" />
+                </h:form>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Event open for presence" />
+                </f:facet>
+                <h:form>  
+                    <h:outputText value="#{event.openForEnroll}" />    
+                </h:form>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Details" />
+                </f:facet>
+                <h:form>
+                    <h:commandLink id="event_presence_link" action="attendant_event_details?faces-redirect=true">
                         <h:outputText value="details" />
-                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentAttendant}" value="#{attendant}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentEvent}" value="#{event}" />
                     </h:commandLink>  
                 </h:form>
             </h:column>
+   
         </h:dataTable>
         <hr></hr>
         <h:form>
-            <h:commandButton value="Return to index" action="index?faces-redirect=true" />
+            <h:commandButton value="Return to attendant panel" action="attendant_panel?faces-redirect=true" />
         </h:form>
-
-        <hr></hr>
         
+        <hr></hr>
+
     </h:body>
 </html>
