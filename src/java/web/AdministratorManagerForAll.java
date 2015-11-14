@@ -108,9 +108,9 @@ public class AdministratorManagerForAll {
                throw new PasswordValidationException("Password not equal to password confirmation.");
            }
        } catch (EntityAlreadyExistsException | MyConstraintViolationException e) {
-           FacesExceptionHandler.handleException(e, e.getMessage(), component, logger);
+           FacesExceptionHandler.handleException(e, e.getMessage(),  logger);
        } catch (Exception e) {
-           FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", component, logger);
+           FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
        }
        return null;
    }
