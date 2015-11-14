@@ -449,6 +449,19 @@ public class AdministratorManagerForAll {
             return null;
         }
     }
+    
+    public int getAllEventsOfCategory(Long Id) {
+        try {
+            return categoryBean.getNumberofEvents(Id);
+        } catch (Exception e) {
+            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
+            return 0;
+        }
+    }
+    
+     public int getNumberEvents(Long id) throws EntityDoesNotExistsException {
+        return categoryBean.getNumberofEvents(id);
+    }
 
     public String updateEvent() {
         try {
