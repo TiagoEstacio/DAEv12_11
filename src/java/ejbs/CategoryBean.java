@@ -220,8 +220,8 @@ public class CategoryBean {
                 event.getName(),
                 event.getDescription(),
                 event.getStartDate(),
-                event.getFinishDate(),
-                event.isOpenForEnroll());
+                event.getFinishDate());
+                
     }
     
     List<EventDTO> eventsToDTOs(List<Event> events) {

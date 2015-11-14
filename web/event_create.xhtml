@@ -50,24 +50,12 @@
             </h:panelGrid>
             <hr></hr>
             
-            <h:selectManyCheckbox value="#{eventManager.categoriesSelected}"  layout="PageDirection" 
-                                  styleClass="formLabelList"> 
-            <h:selectManyCheckbox value="#{administratorManagerForAll.categoriesSelected}"  layout="PageDirection" 
-                                  styleClass="formLabelList"> 
-                    <c:forEach var="list" items="#{administratorManagerForAll.allCategories}" > 
-                    <p>  <f:selectItem itemValue="#{list.name}" itemLabel="#{list.name}" /> </p>
-                </c:forEach> 
-
-            </h:selectManyCheckbox> 
-
-
-           
-
+            
             <hr></hr>    
             
             
             <hr></hr>
-            <h:commandButton value="Create" action="#{eventManager.createEvent}" />
+            <h:commandButton value="Create" action="#{administratorManagerForAll.createEvent}" />
 
         </h:form>
         <h:form>

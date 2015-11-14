@@ -72,7 +72,7 @@ public class EventManager {
     private List<Administrator> administratorsM;
     private List<Attendant> attendantsM;
     private List<Event> eventsM;
-    private List<Category> categoriesM;
+    
     private Attendant currentAttendantM;
     private EventDTO currentEvent;
     
@@ -80,6 +80,7 @@ public class EventManager {
     private Administrator currentAdministratorM;
     private List<String> attendantsSelected;
     private List<String> categoriesSelected;
+    private List<Category> categoriesM;
 
     private List<AttendantDTO> attendantsDisponiveisSelected = new ArrayList<>();
 
@@ -431,8 +432,7 @@ public class EventManager {
     
     public String updateEventCategories() throws EntityDoesNotExistsException, EventNotEnrolledException, EventEnrolledException {
         for (CategoryDTO cat : eventBean.getAllCategoriesOfEvent(currentEvent.getId())) {
-            System.out.println("Current Event: " + currentEvent.getId());
-            System.out.println("Cat: " + cat.getId());
+            
             
             eventBean.unrollEventInCategory(currentEvent.getId(), cat.getId());
         }

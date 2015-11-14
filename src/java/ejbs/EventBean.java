@@ -167,11 +167,26 @@ public class EventBean {
         }
         return null;
     }
+    public List<ManagerDTO> getEventManagers(String name) {
+        Event event = getEventByName(name);
+        if(event != null) {
+            List<Manager> eventManagers = event.getManagers();
+            return managersToDTOs(eventManagers);
+        }
+        return null;
+    }
     
     public void clearAllAttendantsInEvent(String name) {
         Event event = getEventByName(name);
         if(event != null) {
             event.clearAttendants();
+        }
+
+    }
+    public void clearAllManagersInEvent(String name) {
+        Event event = getEventByName(name);
+        if(event != null) {
+            event.clearManagers();
         }
 
     }
@@ -306,8 +321,7 @@ public class EventBean {
                 event.getName(),
                 event.getDescription(),
                 event.getStartDate(),
-                event.getFinishDate(),
-                event.isOpenForEnroll());
+                event.getFinishDate());
     }
     
     List<EventDTO> eventsToDTOs(List<Event> events) {
@@ -347,5 +361,23 @@ public class EventBean {
         }
         return dtos;
     }
+    
+    ManagerDTO managerToDTO(Manager manager) {
+        return new ManagerDTO(
+                manager.getId(),
+                manager.getUserName(),
+                null,
+                manager.getName(),
+                manager.getEmail());
+    }
+
+    List<ManagerDTO> managersToDTOs(List<Manager> managers) {
+        List<ManagerDTO> dtos = new ArrayList<>();
+        for (Manager m : managers) {
+            dtos.add(managerToDTO(m));
+        }
+        return dtos;
+    }
+
 
 }

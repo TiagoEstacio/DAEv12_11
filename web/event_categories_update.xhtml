@@ -64,7 +64,7 @@ and open the template in the editor.
         <hr></hr>   
         <h:form>
 
-            <h:selectManyCheckbox value="#{eventManager.categoriesSelected}"  layout="PageDirection" 
+            <h:selectManyCheckbox value="#{administratorManagerForAll.categoriesSelected}"  layout="PageDirection" 
                                   styleClass="formLabelList"> 
 
                 <c:forEach var="list" items="#{administratorManagerForAll.allCategories}" > 
@@ -76,7 +76,7 @@ and open the template in the editor.
 
             <br />
 
-            <h:commandButton value="Refresh" actionListener="#{eventManager.updateEventCategories}"  />
+            <h:commandButton value="Refresh" actionListener="#{administratorManagerForAll.updateEventCategories}"  />
             </h:form> 
 
 

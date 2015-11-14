@@ -102,8 +102,17 @@
                     </h:commandLink>  
                 </h:form>
             </h:column>
-
-
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="updateManagers" />
+                </f:facet>
+                <h:form>
+                    <h:commandLink id="updatemanagers" action="event_managers_update?faces-redirect=true">
+                        <h:outputText value="Update Managers" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentEvent}" value="#{event}" />
+                    </h:commandLink>  
+                </h:form>
+            </h:column>
         </h:dataTable>
         <hr></hr>
 
