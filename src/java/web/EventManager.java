@@ -435,6 +435,7 @@ public class EventManager {
             
             eventBean.unrollEventInCategory(currentEvent.getId(), cat.getId());
         }
+        //currentEvent.
         eventBean.clearAllCategoriesInEvent(currentEvent.getId());
 
         for (String str : categoriesSelected) {

@@ -1,20 +1,16 @@
 package ejbs;
 
-import dtos.AttendantDTO;
 import dtos.CategoryDTO;
 import dtos.EventDTO;
-import dtos.ManagerDTO;
 import entities.Attendant;
 import entities.Category;
 import entities.Event;
-import entities.Manager;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
 import exceptions.Utils;
 import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,10 +23,7 @@ public class CategoryBean {
     @PersistenceContext
     private EntityManager em;
 
-    @EJB
-    private ManagerBean managerBean;
-    @EJB
-    private AttendantBean attendantBean;
+  
 
     public void createCategory(String name) throws EntityAlreadyExistsException, MyConstraintViolationException {
         try {
@@ -146,15 +139,16 @@ public class CategoryBean {
             if (category == null) {
                 throw new EntityDoesNotExistsException("There is no category with that id.");
             }
-            //for (AttendantDTO attendant : attendantBean.getAllAttendants()) {
-            //    attendantBean.unrollAttendantInCategory(attendant.getId(), id);
-            //}
-
-            /* Caso o manager tenha categories
-             for (ManagerDTO manager : managerBean.getAllManagers()){
-             managerBean.unrollManagerInCategory(manager.getId(), id);
-             }
-             */
+           
+            for (Attendant attendant : category.getAttendants()) {
+                attendant.removeCategory(category);
+                      
+            }
+            
+            for (Event event : category.getEvents()) {
+              event.removeCategory(category);
+           }
+            
             em.remove(category);
         } catch (EntityDoesNotExistsException e) {
             throw e;

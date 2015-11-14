@@ -235,9 +235,9 @@ public class EventBean {
                 throw new EventNotEnrolledException("There is no event with that id.");
             }
             
-            if(!category.getAttendants().contains(event)){
-                throw new EventNotEnrolledException("Event is not enrolled in that category.");
-            }
+           // if(!category.getAttendants().contains(event)){
+           //   throw new EventNotEnrolledException("Event is not enrolled in that category.");
+           // }
           
             category.removeEvent(event);
             event.removeCategory(category);
