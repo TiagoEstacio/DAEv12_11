@@ -81,7 +81,7 @@
             </h:column>
             <h:column>
                 <h:form>
-                    <h:commandLink id="details" action="event_add_attendants?faces-redirect=true">
+                    <h:commandLink id="details" action="admin_event_add_attendants?faces-redirect=true">
                         <h:outputText value="Add atendants" />
                         <f:setPropertyActionListener target="#{administratorManagerForAll.currentEvent}" value="#{event}" />
                     </h:commandLink>
@@ -94,11 +94,8 @@
         <hr/>
 
 
-        <h:form>                  
-            <h:commandLink
-                id="return"
-                value="Return"
-                action="index?faces-redirect=true" />
+        <h:form>
+            <h:commandButton value="Back" action="manager_lists.xhtml" />	
         </h:form>
 
         <h:messages errorStyle="color: red" />        
