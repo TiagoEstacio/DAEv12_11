@@ -59,7 +59,17 @@ public class CategoryBean {
             throw new EJBException(ex.getMessage());
         }
     }
-    
+
+    public List<CategoryDTO> getAllCategoriesOfCurrentEvent(Long id) throws EntityDoesNotExistsException{
+        
+        Event event = em.find(Event.class, id);
+            if (event == null){
+                throw new EntityDoesNotExistsException("There is no event with that id.");
+            }
+        List<Category> eventCategories = event.getCategories();
+        return categoriesToDTOs(eventCategories);
+    }
+
     public List<EventDTO> getAllCategoryEvents(Long id) throws EntityDoesNotExistsException {
         Category category = em.find(Category.class, id);
         if (category == null) {

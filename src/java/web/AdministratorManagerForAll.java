@@ -337,6 +337,21 @@ public class AdministratorManagerForAll {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
     }
+    
+    public List<EventDTO> getAllEventsOfCurrentAttendant(){
+        try {
+            return attendantBean.getAllEventsOfAttendant(currentAttendant.getId());
+        } catch (Exception ex) {
+            throw new EJBException(ex.getMessage());       
+        }
+    }
+     
+    public int getAttendantNumberEvents(Long attendantId)throws EntityDoesNotExistsException{
+        if(eventBean.getAttendantEvents(attendantId).isEmpty()){
+            return 0;
+        } 
+        return eventBean.getAttendantEvents(attendantId).size();
+    }
 
     /*
     public List<AttendantDTO> getCurrentAttendantsInEvent() {
@@ -522,6 +537,15 @@ public class AdministratorManagerForAll {
         }
     }
 
+    public List<CategoryDTO> getAllCategoriesOfCurrentEvent() {
+        try {
+            return categoryBean.getAllCategoriesOfCurrentEvent(currentEvent.getId());
+        } catch (Exception e) {
+            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
+            return null;
+        }
+    }
+    
     public String updateCategory() {
         
         try {
