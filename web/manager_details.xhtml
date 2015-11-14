@@ -7,14 +7,18 @@
         <title>Manager Details</title>
     </h:head>
     <h:body>
+
+        <h3 style="color: green">My Details</h3>
+        <hr></hr>
+        
         <h:panelGrid columns="2">
 
-            <h:outputLabel for="username" value="Name: " />
+            <h:outputLabel for="name" value="Name: " />
             <h:outputText 
                 id="username"
                 value="#{administratorManagerForAll.currentManager.name}"/>
 
-            <h:outputLabel for="name" value="Username: " />
+            <h:outputLabel for="username" value="Username: " />
             <h:outputText 
                 id="name"
                 value="#{administratorManagerForAll.currentManager.username}"/>
@@ -25,8 +29,13 @@
                 value="#{administratorManagerForAll.currentManager.email}"/>
 
         </h:panelGrid>
+        <br/> 
+        
+        <hr></hr>
 
-        <br/>        
+        <h3 style="color: green">My Events</h3>
+
+        <hr></hr>  
 
         <h:dataTable
             var="event"
@@ -94,11 +103,8 @@
         <hr/>
 
 
-        <h:form>                  
-            <h:commandLink
-                id="return"
-                value="Return"
-                action="index?faces-redirect=true" />
+        <h:form>
+            <h:commandButton value="Back" action="manager_panel?faces-redirect=true" />	
         </h:form>
 
         <h:messages errorStyle="color: red" />        

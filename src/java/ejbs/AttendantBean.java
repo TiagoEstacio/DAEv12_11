@@ -107,12 +107,12 @@ public class AttendantBean {
             if (attendant == null){
                 throw new EntityDoesNotExistsException("There is no attendant with that id.");
             }
-            List<Attendant> attendants = (List<Attendant>) em.createNamedQuery("getAllAttendants").getResultList();
-            for (Attendant a : attendants){
-                if (username.equals(a.getUserName())){
-                    throw new EntityAlreadyExistsException("That username already exists.");
-                }
-            }
+//            List<Attendant> attendants = (List<Attendant>) em.createNamedQuery("getAllAttendants").getResultList();
+//            for (Attendant a : attendants){
+//                if (username.equals(a.getUserName())){
+//                    throw new EntityAlreadyExistsException("That username already exists.");
+//                }
+//            }
             attendant.setUsername(username);
             attendant.setPassword(password);
             attendant.setName(name);
