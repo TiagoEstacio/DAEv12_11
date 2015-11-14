@@ -20,7 +20,7 @@
             cellpadding="10">
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Username" />
+                    <h:outputText value="Name" />
                 </f:facet>
                 <h:form>
                     <h:outputText value="#{user.name}" />
@@ -29,10 +29,10 @@
 
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Name" />
+                    <h:outputText value="Username" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{user.name}" />
+                    <h:outputText value="#{user.username}" />
                 </h:form>
             </h:column>
 
@@ -53,7 +53,7 @@
                 <h:form>
                     <h:commandLink id="detais" action="administrator_manager_details?faces-redirect=true">
                         <h:outputText value="details" />
-                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentUser}" value="#{user}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentManager}" value="#{user}" />
                     </h:commandLink>  
                 </h:form>
             </h:column>
@@ -65,7 +65,7 @@
                 <h:form>
                     <h:commandLink id="user_update_link" action="manager_update?faces-redirect=true">
                         <h:outputText value="Update" />
-                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentUser}" value="#{user}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentManager}" value="#{user}" />
                     </h:commandLink>
                 </h:form>
             </h:column>

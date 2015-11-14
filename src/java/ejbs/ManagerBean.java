@@ -86,12 +86,12 @@ public class ManagerBean {
             if (manager == null){
                 throw new EntityDoesNotExistsException("There is no manager with that id.");
             }
-            List<Manager> Managers = (List<Manager>) em.createNamedQuery("getAllManagers").getResultList();
-            for (Manager m : Managers){
-                if (username.equals(m.getUserName())){
-                    throw new EntityAlreadyExistsException("That manager already exists.");
-                }
-            }
+//            List<Manager> Managers = (List<Manager>) em.createNamedQuery("getAllManagers").getResultList();
+//            for (Manager m : Managers){
+//                if (username.equals(m.getUserName())){
+//                    throw new EntityAlreadyExistsException("That manager already exists.");
+//                }
+//            }
             manager.setUsername(username);
             manager.setPassword(password);
             manager.setName(name);

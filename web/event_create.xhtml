@@ -30,7 +30,7 @@
                     required="true" 
                     value="#{eventManager.evDescription}" />
                 <h:message for="descriptionInputText" />
-                <h:outputLabel for="startdateInputText" rendered="true" value="StartDate: " />
+                <h:outputLabel for="startdateInputText" rendered="true" value="Start Date: " />
                 <h:inputText 
                     id="startdateInputText" 
                     required="true" 
@@ -38,7 +38,7 @@
                     p:placeholder="dd/mm/yyyy hh:mm" />
                  
                  <h:message for="startdateInputText" />
-                <h:outputLabel for="finishdateInputText" rendered="true" value="finishDate: " />
+                <h:outputLabel for="finishdateInputText" rendered="true" value="Finish Date: " />
                 <h:inputText 
                     id="finishdateInputText" 
                     required="true" 
@@ -66,7 +66,7 @@
             
             
             <hr></hr>
-            <h:commandButton value="Create" action="#{eventManager.createEvent()}" />
+            <h:commandButton value="Create" action="#{eventManager.createEvent}" />
 
         </h:form>
         <h:form>
