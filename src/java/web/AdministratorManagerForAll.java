@@ -60,6 +60,10 @@ public class AdministratorManagerForAll {
     
     private UIComponent component;
     
+    //variavel auxiliar de veridicacao de password
+    private String passwordVerify;
+    
+    
     
     public AdministratorManagerForAll() {
         newAdministrator = new AdministratorDTO();
@@ -98,22 +102,31 @@ public class AdministratorManagerForAll {
         }
     }
 
-    public String updateAdministrator() {
+    public String updateAdministrator()  throws PasswordValidationException{
+       
+        
         try {
-            attendantBean.updateAttendant(
+             //verificar password
+        if(currentAdministrator.getPassword().equals(passwordVerify)){
+            administratorBean.updateAdministrator(
                     currentAdministrator.getId(),
                     currentAdministrator.getUsername(),
                     currentAdministrator.getPassword(),
                     currentAdministrator.getName(),
                     currentAdministrator.getEmail());
-            return "administrator_panel?faces-redirect=true";
+            return "administrator_lists?faces-redirect=true";
+        }else{
             
+            throw new PasswordValidationException("Password not equal to password confirmation.");
+        }
         } catch (EntityDoesNotExistsException | MyConstraintViolationException e) {
             FacesExceptionHandler.handleException(e, e.getMessage(), logger);
         } catch (Exception e) {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
         return "administrator_update";
+        
+       
     }
 
     public void removeAdministrator(ActionEvent event) {
@@ -728,6 +741,7 @@ public class AdministratorManagerForAll {
         this.component = component;
     }
     
+    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////// VALIDATORS ////////////////
 
@@ -748,5 +762,13 @@ public class AdministratorManagerForAll {
         }
     }
     */
+
+    public String getPasswordVerify() {
+        return passwordVerify;
+    }
+
+    public void setPasswordVerify(String passwordVerify) {
+        this.passwordVerify = passwordVerify;
+    }
     
  }
