@@ -102,7 +102,7 @@ public class AdministratorManagerForAll {
     }*/
     public String createAdministrator() throws PasswordValidationException{
        try {
-           //verificar pass
+           //verificar password
            if(newAdministrator.getPassword().equals(passwordVerify)){
                    administratorBean.createAdministrator(
                        newAdministrator.getUsername(),
@@ -131,23 +131,23 @@ public class AdministratorManagerForAll {
         }
     }
 
-    public String updateAdministrator()  throws PasswordValidationException{
+    public String updateAdministrator() throws PasswordValidationException{
        
         
         try {
-             //verificar password
-        if(currentAdministrator.getPassword().equals(passwordVerify)){
-            administratorBean.updateAdministrator(
+            //verificar password
+            if(currentAdministrator.getPassword().equals(passwordVerify)){
+                administratorBean.updateAdministrator(
                     currentAdministrator.getId(),
                     currentAdministrator.getUsername(),
                     currentAdministrator.getPassword(),
                     currentAdministrator.getName(),
                     currentAdministrator.getEmail());
-            return "administrator_lists?faces-redirect=true";
-        }else{
-            //TODO - NOT WORKING
-            throw new PasswordValidationException("Password not equal to password confirmation.");
-        }
+                return "administrator_lists?faces-redirect=true";
+            }else{
+                //TODO - NOT WORKING
+                throw new PasswordValidationException("Password not equal to password confirmation.");
+            }
         } catch (EntityDoesNotExistsException | MyConstraintViolationException e) {
             FacesExceptionHandler.handleException(e, e.getMessage(), logger);
         } catch (Exception e) {
@@ -185,19 +185,25 @@ public class AdministratorManagerForAll {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////// MANAGERS //////////////////
     
-        public String createManager() {
+        public String createManager()throws PasswordValidationException{
         try {
-            managerBean.createManager(
-                    newManager.getUsername(),
-                    newManager.getPassword(),
-                    newManager.getName(),
-                    newManager.getEmail());
-            newManager.reset();
-            return "manager_panel?faces-redirect=true";
+            //verificar password
+            if(newManager.getPassword().equals(passwordVerify)){
+                managerBean.createManager(
+                        newManager.getUsername(),
+                        newManager.getPassword(),
+                        newManager.getName(),
+                        newManager.getEmail());
+                newManager.reset();
+                return "manager_panel?faces-redirect=true";
+            } else {
+                //TODO - NOT WORKING
+                throw new PasswordValidationException("Password not equal to password confirmation.");  
+            }
         } catch (EntityAlreadyExistsException | MyConstraintViolationException e) {
-            FacesExceptionHandler.handleException(e, e.getMessage(), component, logger);
+            FacesExceptionHandler.handleException(e, e.getMessage(), logger);
         } catch (Exception e) {
-            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", component, logger);
+            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
         return null;
     }
@@ -211,16 +217,21 @@ public class AdministratorManagerForAll {
         }
     }
 
-    public String updateManager() {
+    public String updateManager()throws PasswordValidationException{
         try {
-            managerBean.updateManager(
-                    currentManager.getId(),
-                    currentManager.getUsername(),
-                    currentManager.getPassword(),
-                    currentManager.getName(),
-                    currentManager.getEmail());
-            return "manager_panel?faces-redirect=true";
-            
+            //verificar password
+            if(currentManager.getPassword().equals(passwordVerify)){
+                managerBean.updateManager(
+                        currentManager.getId(),
+                        currentManager.getUsername(),
+                        currentManager.getPassword(),
+                        currentManager.getName(),
+                        currentManager.getEmail());
+                return "manager_panel?faces-redirect=true";
+            } else {
+                //TODO - NOT WORKING
+                throw new PasswordValidationException("Password not equal to password confirmation."); 
+            }
         } catch (EntityDoesNotExistsException | MyConstraintViolationException e) {
             FacesExceptionHandler.handleException(e, e.getMessage(), logger);
         } catch (Exception e) {
@@ -323,19 +334,25 @@ public class AdministratorManagerForAll {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////// ATTENDANTS ////////////////
     
-    public String createAttendandt(){
+    public String createAttendandt()throws PasswordValidationException {
         try {
-            attendantBean.createAttendant(
+            //verificar password
+            if(newAttendant.getPassword().equals(passwordVerify)){
+                attendantBean.createAttendant(
                     newAttendant.getUsername(),
                     newAttendant.getPassword(),
                     newAttendant.getName(),
                     newAttendant.getEmail());
-            newAttendant.reset();
-            return "attendant_panel?faces-redirect=true";
+                newAttendant.reset();
+                return "attendant_panel?faces-redirect=true";
+            }else{
+            //TODO - NOT WORKING
+            throw new PasswordValidationException("Password not equal to password confirmation.");
+            }
         } catch (EntityAlreadyExistsException | MyConstraintViolationException e) {
-            FacesExceptionHandler.handleException(e, e.getMessage(), component, logger);
+            FacesExceptionHandler.handleException(e, e.getMessage(), logger);
         } catch (Exception e) {
-            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", component, logger);
+            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
         return null;
     }
@@ -362,14 +379,19 @@ public class AdministratorManagerForAll {
 
     public String updateAttendant(){
         try {
-            attendantBean.updateAttendant(
+            //verificar password
+            if(currentAttendant.getPassword().equals(passwordVerify)){
+                attendantBean.updateAttendant(
                     currentAttendant.getId(),
                     currentAttendant.getUsername(),
                     currentAttendant.getPassword(),
                     currentAttendant.getName(),
                     currentAttendant.getEmail());
             return "attendant_panel?faces-redirect=true";
-            
+            }else{
+            //TODO - NOT WORKING
+            throw new PasswordValidationException("Password not equal to password confirmation.");
+            }
         } catch (EntityDoesNotExistsException | MyConstraintViolationException e) {
             FacesExceptionHandler.handleException(e, e.getMessage(), logger);
         } catch (Exception e) {
