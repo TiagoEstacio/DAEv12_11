@@ -77,7 +77,7 @@ public class AdministratorManagerForAll {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////// ADMINISTRATORS ////////////
     
-    public String createAdministrator() {
+    /*public String createAdministrator() {
         try {
             administratorBean.createAdministrator(
                     newAttendant.getUsername(),
@@ -92,7 +92,28 @@ public class AdministratorManagerForAll {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", component, logger);
         }
         return null;
-    }
+    }*/
+    public String createAdministrator() throws PasswordValidationException{
+       try {
+           //verificar pass
+           if(newAdministrator.getPassword().equals(passwordVerify)){
+                   administratorBean.createAdministrator(
+                       newAdministrator.getUsername(),
+                       newAdministrator.getPassword(),
+                       newAdministrator.getName(),
+                       newAdministrator.getEmail());
+                   newAdministrator.reset();
+               return "administrator_panel?faces-redirect=true";
+           } else {
+               throw new PasswordValidationException("Password not equal to password confirmation.");
+           }
+       } catch (EntityAlreadyExistsException | MyConstraintViolationException e) {
+           FacesExceptionHandler.handleException(e, e.getMessage(), component, logger);
+       } catch (Exception e) {
+           FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", component, logger);
+       }
+       return null;
+   }
     
     public List<AdministratorDTO> getAllAdministrators() {
         try {
