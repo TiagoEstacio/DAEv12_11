@@ -16,38 +16,38 @@
                 <h:inputText 
                     id="nameInputText" 
                     required="true" 
-                    value="#{attendantManager.atName}" />
+                    value="#{administratorManagerForAll.newAttendant.name}" />
                 <h:message for="nameInputText" />
                 <h:outputLabel for="usernameInputText" rendered="true" value="Username: " />
                 <h:inputText 
                     id="usernameInputText" 
                     required="true" 
-                    value="#{attendantManager.atUserName}" />
-                <h:message for="usernameInputText" />s
+                    value="#{administratorManagerForAll.newAttendant.username}" />
+                <h:message for="usernameInputText" />
                
                 <h:outputLabel for="emailInputText" rendered="true" value="Email: " />
                 <h:inputText 
                     id="emailInputText" 
                     required="true" 
-                    value="#{attendantManager.atEmail}" />
+                    value="#{administratorManagerForAll.newAttendant.email}" />
                 <h:message for="emailInputText" />
                 <h:outputLabel for="passwordInputText" rendered="true" value="Password: " />
                 <h:inputSecret 
                     id="passwordInputText" 
                     required="true" 
-                    value="#{attendantManager.atPassword}" />
+                    value="#{administratorManagerForAll.newAttendant.password}" />
                 <h:message for="passwordInputText" />
                 <h:outputLabel for="confirmpasswordInputText" rendered="true" value=" Confirm Password: " />
                 <h:inputSecret 
                     id="confirmpasswordInputText" 
                     required="true" 
-                    value="#{attendantManager.atPasswordConfirm}" />
+                    value="#{administratorManagerForAll.passwordVerify}" />
                 <h:message for="confirmpasswordInputText" />
                
               
             </h:panelGrid>
             <hr></hr>
-            <h:commandButton value="Create" action="#{attendantManager.createAttendant()}" />
+            <h:commandButton value="Create" action="#{administratorManagerForAll.createAttendandt()}" />
 
         </h:form>
         <h:form>

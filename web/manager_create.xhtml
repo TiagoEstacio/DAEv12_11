@@ -16,38 +16,38 @@
                 <h:inputText 
                     id="nameInputText" 
                     required="true" 
-                    value="#{managerManager.manName}" />
+                    value="#{administratorManagerForAll.newManager.name}" />
                 <h:message for="nameInputText" />
                 <h:outputLabel for="usernameInputText" rendered="true" value="Username: " />
                 <h:inputText 
                     id="usernameInputText" 
                     required="true" 
-                    value="#{managerManager.manUserName}" />
+                    value="#{administratorManagerForAll.newManager.username}" />
                 <h:message for="usernameInputText" />
                
                 <h:outputLabel for="emailInputText" rendered="true" value="Email: " />
                 <h:inputText 
                     id="emailInputText" 
                     required="true" 
-                    value="#{managerManager.manEmail}" />
+                    value="#{administratorManagerForAll.newManager.email}" />
                 <h:message for="emailInputText" />
                 <h:outputLabel for="passwordInputText" rendered="true" value="Password: " />
                 <h:inputSecret 
                     id="passwordInputText" 
                     required="true" 
-                    value="#{managerManager.manPassword}" />
+                    value="#{administratorManagerForAll.newManager.password}" />
                 <h:message for="passwordInputText" />
                 <h:outputLabel for="confirmpasswordInputText" rendered="true" value=" Confirm Password: " />
                 <h:inputSecret 
                     id="confirmpasswordInputText" 
                     required="true" 
-                    value="#{managerManager.manPasswordConfirm}" />
+                    value="#{administratorManagerForAll.passwordVerify}" />
                 <h:message for="confirmpasswordInputText" />
                
               
             </h:panelGrid>
             <hr></hr>
-            <h:commandButton value="Create" action="#{managerManager.createManager()}" />
+            <h:commandButton value="Create" action="#{administratorManagerForAll.createManager()}" />
 
         </h:form>
         <h:form>
