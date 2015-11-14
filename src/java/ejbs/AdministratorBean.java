@@ -103,12 +103,12 @@ public class AdministratorBean {
             if (administrator == null){
                 throw new EntityDoesNotExistsException("There is no administrator with that id.");
             }
-            List<Administrator> administrators = (List<Administrator>) em.createNamedQuery("getAllAdministrators").getResultList();
-            for (Administrator a : administrators){
-                if (username.equals(a.getUserName())){
-                    throw new EntityAlreadyExistsException("A administrator with that username already exists.");  
-                }
-            }
+//            List<Administrator> administrators = (List<Administrator>) em.createNamedQuery("getAllAdministrators").getResultList();
+//            for (Administrator a : administrators){
+//                if (username.equals(a.getUserName())){
+//                    throw new EntityAlreadyExistsException("A administrator with that username already exists.");  
+//                }
+//            }
             administrator.setUsername(username);
             administrator.setPassword(password);
             administrator.setName(name);
