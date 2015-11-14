@@ -174,7 +174,7 @@ public class AdministratorManagerForAll {
         try {
             UIParameter param = (UIParameter) event.getComponent().findComponent("deleteUserId");
             Long id = Long.parseLong(param.getValue().toString());
-            administratorBean.removeAdministrator(id);
+            administratorBean.removeUser(id);
         } catch (EntityDoesNotExistsException e) {
             FacesExceptionHandler.handleException(e, e.getMessage(), logger);
         } catch (Exception e) {

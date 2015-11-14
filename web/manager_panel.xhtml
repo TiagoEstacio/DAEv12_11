@@ -57,18 +57,6 @@
                     </h:commandLink>  
                 </h:form>
             </h:column>
-
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Update" />
-                </f:facet>
-                <h:form>
-                    <h:commandLink id="user_update_link" action="_">
-                        <h:outputText value="Update" />
-                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentManager}" value="#{user}" />
-                    </h:commandLink>
-                </h:form>
-            </h:column>
         </h:dataTable>
         <hr></hr>      
     </h:body>
