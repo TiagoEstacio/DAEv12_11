@@ -79,8 +79,20 @@ public class ConfigBean {
             eventBean.enrollEventInCategory(Long.parseLong("25"),Long.parseLong("28"));
             eventBean.enrollEventInCategory(Long.parseLong("26"),Long.parseLong("28"));
             
-             
-  
+            //atttendants em events
+            //attendantBean.enrollAttendantInEvent(id, currentEvent.getId());
+            attendantBean.enrollAttendantInEvent(Long.parseLong("7"), Long.parseLong("23"));
+            attendantBean.enrollAttendantInEvent(Long.parseLong("7"), Long.parseLong("24"));
+            attendantBean.enrollAttendantInEvent(Long.parseLong("8"), Long.parseLong("24"));
+            attendantBean.enrollAttendantInEvent(Long.parseLong("9"), Long.parseLong("24"));
+            attendantBean.enrollAttendantInEvent(Long.parseLong("10"), Long.parseLong("23"));
+            
+            //atttendants em categories
+            //attendantBean.enrollAttendantInEvent(id, currentEvent.getId());
+            attendantBean.enrollAttendantInCategory(Long.parseLong("7"), Long.parseLong("28"));
+            attendantBean.enrollAttendantInCategory(Long.parseLong("7"), Long.parseLong("29"));
+            
+ 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
