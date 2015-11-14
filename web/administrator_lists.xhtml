@@ -51,9 +51,9 @@
                     <h:outputText value="Details" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="detais" action="_">
+                    <h:commandLink id="detais" action="administrator_details?faces_redirect=true">
                         <h:outputText value="details" />
-                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentUser}" value="#{user}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentAdministrator}" value="#{user}" />
                     </h:commandLink>  
                 </h:form>
             </h:column>
@@ -63,9 +63,9 @@
                     <h:outputText value="Update" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="user_update_link" action="_">
+                    <h:commandLink id="user_update_link" action="administrator_update?faces_redirect=true">
                         <h:outputText value="Update" />
-                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentUser}" value="#{user}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentAdministrator}" value="#{user}" />
                     </h:commandLink>
                 </h:form>
             </h:column>

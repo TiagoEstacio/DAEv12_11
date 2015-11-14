@@ -1,6 +1,6 @@
-
 package web;
 
+import exceptions.PasswordValidationException;
 import dtos.AdministratorDTO;
 import dtos.AttendantDTO;
 import dtos.CategoryDTO;
@@ -61,6 +61,10 @@ public class AdministratorManagerForAll {
     
     private UIComponent component;
     
+    //variavel auxiliar de veridicacao de password
+    private String passwordVerify;
+    
+    
     
     public AdministratorManagerForAll() {
         newAdministrator = new AdministratorDTO();
@@ -68,12 +72,19 @@ public class AdministratorManagerForAll {
         newAttendant = new AttendantDTO();
         newEvent = new EventDTO();
         newCategory = new CategoryDTO();
+        
+        currentCategory = new CategoryDTO();
+        currentAdministrator = new AdministratorDTO();
+        currentAttendant = new AttendantDTO();
+        currentEvent = new EventDTO();
+        currentManager = new ManagerDTO();
+        currentUser = new UserDTO();
     }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////// ADMINISTRATORS ////////////
     
-    public String createAdministrator() {
+    /*public String createAdministrator() {
         try {
             administratorBean.createAdministrator(
                     newAttendant.getUsername(),
@@ -88,7 +99,28 @@ public class AdministratorManagerForAll {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", component, logger);
         }
         return null;
-    }
+    }*/
+    public String createAdministrator() throws PasswordValidationException{
+       try {
+           //verificar pass
+           if(newAdministrator.getPassword().equals(passwordVerify)){
+                   administratorBean.createAdministrator(
+                       newAdministrator.getUsername(),
+                       newAdministrator.getPassword(),
+                       newAdministrator.getName(),
+                       newAdministrator.getEmail());
+                   newAdministrator.reset();
+               return "administrator_panel?faces-redirect=true";
+           } else {
+               throw new PasswordValidationException("Password not equal to password confirmation.");
+           }
+       } catch (EntityAlreadyExistsException | MyConstraintViolationException e) {
+           FacesExceptionHandler.handleException(e, e.getMessage(),  logger);
+       } catch (Exception e) {
+           FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
+       }
+       return null;
+   }
     
     public List<AdministratorDTO> getAllAdministrators() {
         try {
@@ -99,22 +131,31 @@ public class AdministratorManagerForAll {
         }
     }
 
-    public String updateAdministrator() {
+    public String updateAdministrator()  throws PasswordValidationException{
+       
+        
         try {
-            attendantBean.updateAttendant(
+             //verificar password
+        if(currentAdministrator.getPassword().equals(passwordVerify)){
+            administratorBean.updateAdministrator(
                     currentAdministrator.getId(),
                     currentAdministrator.getUsername(),
                     currentAdministrator.getPassword(),
                     currentAdministrator.getName(),
                     currentAdministrator.getEmail());
-            return "administrator_panel?faces-redirect=true";
-            
+            return "administrator_lists?faces-redirect=true";
+        }else{
+            //TODO - NOT WORKING
+            throw new PasswordValidationException("Password not equal to password confirmation.");
+        }
         } catch (EntityDoesNotExistsException | MyConstraintViolationException e) {
             FacesExceptionHandler.handleException(e, e.getMessage(), logger);
         } catch (Exception e) {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
         return "administrator_update";
+        
+       
     }
 
     public void removeAdministrator(ActionEvent event) {
@@ -307,6 +348,17 @@ public class AdministratorManagerForAll {
             return null;
         }
     }
+    
+    public int getAllAttendantsOfCategory(long id) {
+        try {
+            
+            return categoryBean.getNumberofAttendants(id);
+           // return attendantBean.getAllAttendants();
+        } catch (Exception e) {
+            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
+            return 0;
+        }
+    }
 
     public String updateAttendant(){
         try {
@@ -449,6 +501,19 @@ public class AdministratorManagerForAll {
             return null;
         }
     }
+    
+    public int getAllEventsOfCategory(Long Id) {
+        try {
+            return categoryBean.getNumberofEvents(Id);
+        } catch (Exception e) {
+            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
+            return 0;
+        }
+    }
+    
+     public int getNumberEvents(Long id) throws EntityDoesNotExistsException {
+        return categoryBean.getNumberofEvents(id);
+    }
 
     public String updateEvent() {
         try {
@@ -508,7 +573,7 @@ public class AdministratorManagerForAll {
     public String createCategory() {
         try {
             categoryBean.createCategory(
-                    newEvent.getName());
+                 currentCategory.getName());
             newCategory.reset();
             return "administrator_panel?faces_redirect=true";
         } catch (EntityAlreadyExistsException | MyConstraintViolationException e) {
@@ -705,6 +770,7 @@ public class AdministratorManagerForAll {
         this.component = component;
     }
     
+    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////// VALIDATORS ////////////////
 
@@ -725,6 +791,13 @@ public class AdministratorManagerForAll {
         }
     }
     */
+
+    public String getPasswordVerify() {
+        return passwordVerify;
+    }
+
+    public void setPasswordVerify(String passwordVerify) {
+        this.passwordVerify = passwordVerify;
+    }
     
  }
-
