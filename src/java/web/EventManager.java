@@ -72,7 +72,7 @@ public class EventManager {
     private List<Administrator> administratorsM;
     private List<Attendant> attendantsM;
     private List<Event> eventsM;
-    private List<Category> categoriesM;
+    
     private Attendant currentAttendantM;
     private EventDTO currentEvent;
     
@@ -80,6 +80,7 @@ public class EventManager {
     private Administrator currentAdministratorM;
     private List<String> attendantsSelected;
     private List<String> categoriesSelected;
+    private List<Category> categoriesM;
 
     private List<AttendantDTO> attendantsDisponiveisSelected = new ArrayList<>();
 

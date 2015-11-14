@@ -1,6 +1,7 @@
 
 package ejbs;
 
+import dtos.AttendantDTO;
 import dtos.EventDTO;
 import dtos.ManagerDTO;
 import entities.Category;
@@ -69,7 +70,7 @@ public class ManagerBean {
             Manager manager = new Manager();
             List<Manager> managers = (List<Manager>) em.createNamedQuery("getAllManagers").getResultList();
             for (Manager m : managers){
-                if (username.equals(m.getUserName())){
+                if (username.equals(m.getName())){
                     manager = m;
                     break;
                 }
@@ -352,8 +353,12 @@ public class ManagerBean {
                 event.getName(),
                 event.getDescription(),
                 event.getStartDate(),
-                event.getFinishDate(),
-                event.isOpenForEnroll());
+                event.getFinishDate());
+               
+    }
+
+    public Object enrollManagerInEvent(AttendantDTO attendantByName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
 }

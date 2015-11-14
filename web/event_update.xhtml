@@ -14,7 +14,7 @@
                 <h:inputText 
                     id="nameInputText" 
                     required="true" 
-                    value="#{eventManager.currentEvent.name}" />
+                    value="#{administratorManagerForAll.currentEvent.name}" />
                 <h:message for="nameInputText" />
             </h:panelGrid>
 
@@ -23,7 +23,7 @@
                 <h:inputText 
                     id="descriptionInputText" 
                     required="true" 
-                    value="#{eventManager.currentEvent.description}" />
+                    value="#{administratorManagerForAll.currentEvent.description}" />
                 <h:message for="descriptionInputText" />
             </h:panelGrid>
             <h:panelGrid id="startdate" columns="3" border="0" cellpadding="0" cellspacing="2">
@@ -31,7 +31,7 @@
                 <h:inputText 
                     id="startdateInputText" 
                     required="true" 
-                    value="#{eventManager.currentEvent.startDate}" />
+                    value="#{administratorManagerForAll.currentEvent.startDate}" />
                 <h:message for="startdateInputText" />
             </h:panelGrid>
            
@@ -40,12 +40,12 @@
                 <h:inputText 
                     id="finishdateInputText" 
                     required="true" 
-                    value="#{eventManager.currentEvent.finishDate}" />
+                    value="#{administratorManagerForAll.currentEvent.finishDate}" />
                 <h:message for="finishdateInputText" />
             </h:panelGrid>
 
             <hr></hr>
-            <h:commandButton value="Update" action="#{eventManager.updateEvent}" />
+            <h:commandButton value="Update" action="#{administratorManagerForAll.updateEvent}" />
 
 
 
