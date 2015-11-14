@@ -4,10 +4,10 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Create Attendant</title>
+        <title>Update Manager</title>
     </h:head>
     <h:body>
-        <h3 style="color: green">Create Attendant</h3>
+        <h3 style="color: green">Update Manager</h3>
         <hr></hr>
         <h:form>
             <h:panelGrid id="panel" columns="3" border="0" cellpadding="0" cellspacing="2">
@@ -16,26 +16,26 @@
                 <h:inputText 
                     id="nameInputText" 
                     required="true" 
-                    value="#{administratorManagerForAll.newAttendant.name}" />
+                    value="#{administratorManagerForAll.currentMa.name}" />
                 <h:message for="nameInputText" />
                 <h:outputLabel for="usernameInputText" rendered="true" value="Username: " />
                 <h:inputText 
                     id="usernameInputText" 
                     required="true" 
-                    value="#{administratorManagerForAll.newAttendant.username}" />
+                    value="#{administratorManagerForAll.currentAdministrator.username}" />
                 <h:message for="usernameInputText" />
                
                 <h:outputLabel for="emailInputText" rendered="true" value="Email: " />
                 <h:inputText 
                     id="emailInputText" 
                     required="true" 
-                    value="#{administratorManagerForAll.newAttendant.email}" />
+                    value="#{administratorManagerForAll.currentAdministrator.email}" />
                 <h:message for="emailInputText" />
                 <h:outputLabel for="passwordInputText" rendered="true" value="Password: " />
                 <h:inputSecret 
                     id="passwordInputText" 
                     required="true" 
-                    value="#{administratorManagerForAll.newAttendant.password}" />
+                    value="#{administratorManagerForAll.currentAdministrator.password}" />
                 <h:message for="passwordInputText" />
                 <h:outputLabel for="confirmpasswordInputText" rendered="true" value=" Confirm Password: " />
                 <h:inputSecret 
@@ -47,7 +47,7 @@
               
             </h:panelGrid>
             <hr></hr>
-            <h:commandButton value="Create" action="#{administratorManagerForAll.createAttendandt()}" />
+            <h:commandButton value="Update" action="#{administratorManagerForAll.updateAdministrator}"/>
 
         </h:form>
         <h:form>

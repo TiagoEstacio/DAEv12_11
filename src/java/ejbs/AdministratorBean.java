@@ -3,6 +3,8 @@ package ejbs;
 
 import dtos.AdministratorDTO;
 import entities.Administrator;
+import entities.Attendant;
+import entities.Manager;
 import entities.User;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
@@ -41,6 +43,34 @@ public class AdministratorBean {
            throw new EJBException(e.getMessage());
         }
     }
+    
+//    public void createUser (String username, String password, String name, String email, XXXXXXX type)throws EntityAlreadyExistsException, MyConstraintViolationException {
+//        try {
+//            List<User> users = (List<User>) em.createNamedQuery("getAllUsers").getResultList();
+//            for (User u : users){
+//                if (username.equals(u.getUserName())){
+//                    throw new EntityAlreadyExistsException("A user with that username already exists.");  
+//                }
+//            }
+//            User user = null;
+//            if(type == "Administrator"){
+//                user = new Administrator (username, password, name, email);
+//            }
+//            if(type == "Manager"){
+//                user = new Manager (username, password, name, email);
+//            }
+//            if(type == "Attendant"){
+//                user = new Attendant (username, password, name, email);
+//            }
+//            em.persist(user);
+//        } catch (EntityAlreadyExistsException e) {
+//            throw e;
+//        } catch (ConstraintViolationException e) {
+//            throw new MyConstraintViolationException(Utils.getConstraintViolationMessages(e));
+//        } catch (Exception e) {
+//           throw new EJBException(e.getMessage());
+//        }
+//    }
     
     public List<AdministratorDTO> getAllAdministrators() {
         try {

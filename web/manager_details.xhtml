@@ -83,7 +83,7 @@
                 <h:form>
                     <h:commandLink id="details" action="event_add_attendants?faces-redirect=true">
                         <h:outputText value="Add atendants" />
-                        <f:setPropertyActionListener target="#{eventManager.currentEvent}" value="#{event}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentEvent}" value="#{event}" />
                     </h:commandLink>
                 </h:form>                
             </h:column> 
