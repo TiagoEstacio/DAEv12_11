@@ -45,7 +45,7 @@ and open the template in the editor.
         <h:dataTable
             var="user" 
             summary="Table of users"
-            value="#{eventManager.allEventAttendants}"
+            value="#{administratorManagerForAll.enrolledAttendantsInEvents}"
             rules="all"
             cellpadding="10">
             <h:column>
@@ -80,10 +80,10 @@ and open the template in the editor.
         <hr></hr>   
         <h:form>
 
-            <h:selectManyCheckbox value="#{eventManager.attendantsSelected}"  layout="PageDirection" 
+            <h:selectManyCheckbox value="#{administratorManagerForAll.attendantsSelected}"  layout="PageDirection" 
                                   styleClass="formLabelList"> 
 
-                <c:forEach var="list" items="#{eventManager.attendantsDisponiveisSelected}" > 
+                <c:forEach var="list" items="#{administratorManagerForAll.attendantsDisponiveisSelected}" > 
                     <p>  <f:selectItem itemValue="#{list.name}" itemLabel="#{list.name}" /> </p>
                 </c:forEach> 
 
@@ -92,7 +92,7 @@ and open the template in the editor.
 
             <br />
 
-            <h:commandButton value="Refresh" actionListener="#{eventManager.addAttendantsList}" />
+            <h:commandButton value="Refresh" actionListener="#{administratorManagerForAll.addAttendantsList}" />
             
 
 
