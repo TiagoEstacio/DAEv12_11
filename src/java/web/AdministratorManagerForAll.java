@@ -242,7 +242,7 @@ public class AdministratorManagerForAll {
                         currentManager.getPassword(),
                         currentManager.getName(),
                         currentManager.getEmail());
-                return "manager_panel?faces-redirect=true";
+                return "manager_lists?faces-redirect=true";
             } else {
                 //TODO - NOT WORKING
                 throw new PasswordValidationException("Password not equal to password confirmation."); 
