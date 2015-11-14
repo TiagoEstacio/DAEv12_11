@@ -391,7 +391,7 @@ public class EventManager {
     }
 
     public String addAttendantsList() throws EntityDoesNotExistsException, AttendantNotEnrolledException, AttendantEnrolledException {
-        
+        System.out.println("Eeeeeeeeevent ID: ");
         for (AttendantDTO att1 : eventBean.getEventAttendants(currentEvent.getName())) {
             attendantBean.unrollAttendantInEvent(att1.getId(), currentEvent.getId());
         }
@@ -425,6 +425,7 @@ public class EventManager {
     }
     
     public List<AttendantDTO> getAllEventAttendants(){
+        
         return eventBean.getEventAttendants(currentEvent.getName());
     }
     

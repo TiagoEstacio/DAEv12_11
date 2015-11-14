@@ -12,9 +12,12 @@ import ejbs.AttendantBean;
 import ejbs.CategoryBean;
 import ejbs.EventBean;
 import ejbs.ManagerBean;
+import exceptions.AttendantEnrolledException;
+import exceptions.AttendantNotEnrolledException;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.MyConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -63,6 +66,10 @@ public class AdministratorManagerForAll {
     
     //variavel auxiliar de veridicacao de password
     private String passwordVerify;
+    
+    private List<AttendantDTO> attendantsDisponiveisSelected = new ArrayList<>();
+    private List<String> attendantsSelected;
+    private List<String> categoriesSelected;
     
     
     
@@ -524,6 +531,8 @@ public class AdministratorManagerForAll {
         }
     }
     
+    
+    
     public int getAllEventsOfCategory(Long Id) {
         try {
             return categoryBean.getNumberofEvents(Id);
@@ -587,6 +596,54 @@ public class AdministratorManagerForAll {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
         return null;
+    }
+    
+     public List<String> getAttendantsSelected() {
+        return attendantsSelected;
+    }
+
+    public void setAttendantsSelected(List<String> attendantsSelected) {
+        this.attendantsSelected = attendantsSelected;
+    }
+
+    //retorna os attendants actuais do evento
+    public List<AttendantDTO> getAttendantsDisponiveisSelected() {
+        actualizarAttendantsSelected();
+        return attendantsDisponiveisSelected;
+    }
+
+    public String addAttendantsList() throws EntityDoesNotExistsException, AttendantNotEnrolledException, AttendantEnrolledException {
+        System.out.println("Eeeeeeeeevent ID: ");
+        for (AttendantDTO att1 : eventBean.getEventAttendants(currentEvent.getName())) {
+            attendantBean.unrollAttendantInEvent(att1.getId(), currentEvent.getId());
+        }
+        eventBean.clearAllAttendantsInEvent(currentEvent.getName());
+        
+        for (String str : attendantsSelected) {
+            System.err.println("STRINGG: " + str);
+            System.out.println("LALALAL: " + attendantBean.getAttendantByName(str));
+            //System.out.println(currentEvent.getId());
+            
+            attendantBean.enrollAttendantInEvent((attendantBean.getAttendantByName(str)).getId(), currentEvent.getId());
+        }
+        actualizarAttendantsSelected();
+        return "event_add_attendants?faces-redirect=true";
+    }
+
+    public void actualizarAttendantsSelected() {
+
+        attendantsDisponiveisSelected.clear();
+        if (eventBean.getEventAttendants(currentEvent.getName()).isEmpty()) {
+            for (AttendantDTO att : attendantBean.getAllAttendants()) {
+                attendantsDisponiveisSelected.add(att);
+            }
+            //  System.out.println("Disponiveis PAra selecao Se estava vazia:" + attendantsDisponiveisSelected);
+        } else {
+            for (AttendantDTO att : attendantBean.getAllAttendants()) {
+                attendantsDisponiveisSelected.add(att);
+            }
+
+        }
     }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
