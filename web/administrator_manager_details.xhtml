@@ -7,14 +7,17 @@
         <title>Manager Details</title>
     </h:head>
     <h:body>
+          <h3 style="color: green">Manager Details</h3>
+        <hr></hr>
+        
         <h:panelGrid columns="2">
 
-            <h:outputLabel for="username" value="Name: " />
+            <h:outputLabel for="name" value="Name: " />
             <h:outputText 
                 id="username"
                 value="#{administratorManagerForAll.currentManager.name}"/>
 
-            <h:outputLabel for="name" value="Username: " />
+            <h:outputLabel for="username" value="Username: " />
             <h:outputText 
                 id="name"
                 value="#{administratorManagerForAll.currentManager.username}"/>
@@ -25,19 +28,21 @@
                 value="#{administratorManagerForAll.currentManager.email}"/>
 
         </h:panelGrid>
+        <br/> 
+        
+        <hr></hr>
 
-        <br/>        
+        <h3 style="color: green">Manager's events</h3>
 
+        <hr></hr>  
+        
         <h:dataTable
             var="event"
-            summary="List of all manager's events"
+            summary="List of manager's events"
             value="#{administratorManagerForAll.allEventsOfCurrentManager}"
             rules="all"
             cellpadding="5">
 
-            <f:facet name="header">
-                <h:outputText value="My Events" />
-            </f:facet>
             <h:column>
                 <f:facet name="header">
                     <h:outputText value="Name" />

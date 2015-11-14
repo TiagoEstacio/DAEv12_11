@@ -160,7 +160,7 @@ public class AdministratorManagerForAll {
         } catch (Exception e) {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
-        return "administrator_update";
+        return "administrator_update?faces-redirect=true";
         
        
     }
@@ -244,7 +244,7 @@ public class AdministratorManagerForAll {
         } catch (Exception e) {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
-        return "manager_update";
+        return "manager_update?faces-redirect=true";
     }
     
     public List<EventDTO> getAllEventsOfCurrentManager(){
@@ -404,7 +404,7 @@ public class AdministratorManagerForAll {
         } catch (Exception e) {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
-        return "attendant_update";
+        return "attendant_update?faces-redirect=true";
     }
 
     public void removeAttendant(ActionEvent event) {
@@ -561,7 +561,7 @@ public class AdministratorManagerForAll {
         } catch (Exception e) {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
-        return "event_update";
+        return "event_update?faces-redirect=true";
     }
     
     public void removeEvent(ActionEvent event) {
@@ -703,7 +703,7 @@ public class AdministratorManagerForAll {
         } catch (Exception e) {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
-        return "category_update";
+        return "category_update?faces-redirect=true";
     }
     
     public void removeCategory(ActionEvent event) {
