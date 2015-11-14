@@ -72,6 +72,13 @@ public class AdministratorManagerForAll {
         newAttendant = new AttendantDTO();
         newEvent = new EventDTO();
         newCategory = new CategoryDTO();
+        
+        currentCategory = new CategoryDTO();
+        currentAdministrator = new AdministratorDTO();
+        currentAttendant = new AttendantDTO();
+        currentEvent = new EventDTO();
+        currentManager = new ManagerDTO();
+        currentUser = new UserDTO();
     }
     
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -566,7 +573,7 @@ public class AdministratorManagerForAll {
     public String createCategory() {
         try {
             categoryBean.createCategory(
-                    newEvent.getName());
+                 currentCategory.getName());
             newCategory.reset();
             return "administrator_panel?faces_redirect=true";
         } catch (EntityAlreadyExistsException | MyConstraintViolationException e) {
