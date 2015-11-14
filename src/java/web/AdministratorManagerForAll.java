@@ -16,6 +16,7 @@ import exceptions.AttendantEnrolledException;
 import exceptions.AttendantNotEnrolledException;
 import exceptions.EntityAlreadyExistsException;
 import exceptions.EntityDoesNotExistsException;
+import exceptions.EventEnrolledException;
 import exceptions.MyConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -507,13 +508,24 @@ public class AdministratorManagerForAll {
     
     public String createEvent() {
         try {
+            if (newEvent.getStartDate().matches("^(?=\\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29"
+                    + "(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]"
+                    + "|[3579][26])00)))(?:\\x20|$))|(?:2[0-8]|1\\d|0?[1-9]))([-./])(?:1[012]|0?[1-9])\\1"
+                    + "(?:1[6-9]|[2-9]\\d)?\\d\\d(?:(?=\\x20\\d)\\x20|$))(|([01]\\d|2[0-3])(:[0-5]\\d){1,2})?$")
+                    && newEvent.getFinishDate().matches("^(?=\\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29"
+                            + "(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]"
+                            + "|[3579][26])00)))(?:\\x20|$))|(?:2[0-8]|1\\d|0?[1-9]))([-./])(?:1[012]|0?[1-9])\\1"
+                            + "(?:1[6-9]|[2-9]\\d)?\\d\\d(?:(?=\\x20\\d)\\x20|$))(|([01]\\d|2[0-3])(:[0-5]\\d){1,2})?$")) {
             eventBean.createEvent(
                     newEvent.getName(),
                     newEvent.getDescription(),
                     newEvent.getStartDate(),
                     newEvent.getStartDate());
-            newEvent.reset();
-            return "administrator_panel?faces_redirect=true";
+            
+            //addCategoriesList();
+            newEvent.reset();       
+            return "administrator_panel?faces-redirect=true";
+            }
         } catch (EntityAlreadyExistsException | MyConstraintViolationException e) {
             FacesExceptionHandler.handleException(e, e.getMessage(), logger);
         } catch (Exception e) {
@@ -574,6 +586,14 @@ public class AdministratorManagerForAll {
         } catch (Exception e) {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
         }
+    }
+    
+    public String addCategoriesList() throws EntityDoesNotExistsException, EventEnrolledException {
+
+        for (String str : categoriesSelected) {
+            eventBean.enrollEventInCategory(newEvent.getId(), (categoryBean.getCategoryByName(str)).getId());
+        }
+        return "administrator_panel?faces-redirect=true";
     }
     
     public List<ManagerDTO> getEnrolledManagersInEvents() {
@@ -847,6 +867,14 @@ public class AdministratorManagerForAll {
 
     public void setComponent(UIComponent component) {
         this.component = component;
+    }
+    
+    public List<String> getCategoriesSelected() {
+        return categoriesSelected;
+    }
+
+    public void setCategoriesSelected(List<String> categoriesSelected) {
+        this.categoriesSelected = categoriesSelected;
     }
     
     
