@@ -85,12 +85,12 @@ public class EventBean {
             if (event == null){
                 throw new EntityDoesNotExistsException("There is no event with that id.");
             }
-            List<Event> events = (List<Event>) em.createNamedQuery("getAllEvents").getResultList();
+            /*List<Event> events = (List<Event>) em.createNamedQuery("getAllEvents").getResultList();
             for (Event e : events){
                 if (name.equals(e.getName())){
                     throw new EntityAlreadyExistsException("That event already exists.");
                 }
-            }
+            }*/
             event.setName(name);
             event.setDescription(description);
             event.setStartDate(startDate);
@@ -110,12 +110,13 @@ public class EventBean {
             if (event == null) {
                 throw new EntityDoesNotExistsException("There is no event with that id.");
             }
-
-            for (ManagerDTO manager : managerBean.getAllManagers()){
+            
+            for (ManagerDTO manager : managerBean.getEnrolledManagersInEvents(event.getId())){
+                
                 managerBean.unrollManagerInEvent(manager.getId(),id);
             }
             
-            for (AttendantDTO attendant : attendantBean.getAllAttendants()){
+            for (AttendantDTO attendant : attendantBean.getEnrolledAttendantsInEvents(event.getId())){
                 attendantBean.unrollAttendantInEvent(attendant.getId(),id);
             }
 
@@ -285,11 +286,17 @@ public class EventBean {
     }
 
     public List<CategoryDTO> getAllCategoriesOfEvent(Long id) throws EntityDoesNotExistsException{
-        
+        System.out.println("CCCCCCCHHHHHHegou!!!111111");
+        System.out.println("ID: " + id);
+                
         Event event = em.find(Event.class, id);
             if (event == null){
+                        System.out.println("CCCCCCCHHHHHHegou!!!");
+
                 throw new EntityDoesNotExistsException("There is no event with that id.");
             }
+                    System.out.println("CCCCCCCHHHHHHegou222222!!!");
+
         List<Category> eventCategories = event.getCategories();
         return categoriesToDTOs(eventCategories);
     }

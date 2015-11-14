@@ -2,6 +2,7 @@ package ejbs;
 
 import dtos.AttendantDTO;
 import dtos.CategoryDTO;
+import dtos.EventDTO;
 import dtos.ManagerDTO;
 import entities.Attendant;
 import entities.Category;
@@ -58,6 +59,15 @@ public class CategoryBean {
             throw new EJBException(ex.getMessage());
         }
     }
+    
+    public List<EventDTO> getAllCategoryEvents(Long id) throws EntityDoesNotExistsException {
+        Category category = em.find(Category.class, id);
+        if (category == null) {
+            throw new EntityDoesNotExistsException("There is no category with that id.");
+        }
+        return eventsToDTOs(category.getEvents());
+        
+    }
 
     public int getNumberofAttendants(Long id) throws EntityDoesNotExistsException {
         Category category = em.find(Category.class, id);
@@ -91,16 +101,24 @@ public class CategoryBean {
 
     public void updateCategory(Long id, String name) throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
+            
+            
             Category category = em.find(Category.class, id);
             if (category == null) {
                 throw new EntityDoesNotExistsException("There is no category with that id.");
             }
+            System.out.println("ID: " + id);
+            System.out.println("NAME: " + name);
+
+            System.out.println("CategoryID: " + category.getId());
+            /*
             List<Category> categories = (List<Category>) em.createNamedQuery("getAllCategories").getResultList();
             for (Category c : categories) {
                 if (name.equals(c.getName())) {
                     throw new EntityAlreadyExistsException("That category already exists.");
                 }
             }
+            */
             category.setName(name);
             em.merge(category);
         } catch (EntityDoesNotExistsException e) {
@@ -118,10 +136,9 @@ public class CategoryBean {
             if (category == null) {
                 throw new EntityDoesNotExistsException("There is no category with that id.");
             }
-
-            for (AttendantDTO attendant : attendantBean.getAllAttendants()) {
-                attendantBean.unrollAttendantInCategory(attendant.getId(), id);
-            }
+            //for (AttendantDTO attendant : attendantBean.getAllAttendants()) {
+            //    attendantBean.unrollAttendantInCategory(attendant.getId(), id);
+            //}
 
             /* Caso o manager tenha categories
              for (ManagerDTO manager : managerBean.getAllManagers()){
@@ -192,5 +209,22 @@ public class CategoryBean {
         }
         return dtos;
     }
-
+    
+    EventDTO eventToDTO(Event event) {
+        return new EventDTO(
+                event.getId(),
+                event.getName(),
+                event.getDescription(),
+                event.getStartDate(),
+                event.getFinishDate(),
+                event.isOpenForEnroll());
+    }
+    
+    List<EventDTO> eventsToDTOs(List<Event> events) {
+        List<EventDTO> dtos = new ArrayList<>();
+        for (Event e : events) {
+            dtos.add(eventToDTO(e));
+        }
+        return dtos;
+    }
 }

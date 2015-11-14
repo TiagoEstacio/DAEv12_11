@@ -45,6 +45,15 @@ public class AttendantBean {
         }
     }
     
+    public List<Attendant> getAll() {
+        try {
+            List<Attendant> attendants = (List<Attendant>) em.createNamedQuery("getAllAttendants").getResultList();
+            return attendants;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
     public List<AttendantDTO> getAllAttendants() {
         try {
             List<Attendant> attendants = (List<Attendant>) em.createNamedQuery("getAllAttendants").getResultList();

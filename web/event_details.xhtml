@@ -43,7 +43,7 @@ and open the template in the editor.
             <h:dataTable
                 var="category" 
                 summary="Table of users"
-                value="#{eventManager.currentEvent.categories}"
+                value="#{eventManager.allCategoriesOfCurrentEvent}"
                 rules="all"
                 cellpadding="10">
                 <h:column>

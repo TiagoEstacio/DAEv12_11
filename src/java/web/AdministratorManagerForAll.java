@@ -512,13 +512,23 @@ public class AdministratorManagerForAll {
             return null;
         }
     }
+    
+    public List<EventDTO> getAllCategoryEvents() {
+        try {       
+            return categoryBean.getAllCategoryEvents(currentCategory.getId());
+        } catch (Exception e) {
+            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
+            return null;
+        }
+    }
 
     public String updateCategory() {
+        
         try {
             categoryBean.updateCategory(
-                    currentEvent.getId(),
-                    currentEvent.getName());
-            return "category_list?faces-redirect=true";
+                    currentCategory.getId(),
+                    currentCategory.getName());
+            return "category_lists?faces-redirect=true";
             
         } catch (EntityDoesNotExistsException | MyConstraintViolationException e) {
             FacesExceptionHandler.handleException(e, e.getMessage(), logger);
@@ -530,7 +540,7 @@ public class AdministratorManagerForAll {
     
     public void removeCategory(ActionEvent event) {
         try {
-            UIParameter param = (UIParameter) event.getComponent().findComponent("categoryId");
+            UIParameter param = (UIParameter) event.getComponent().findComponent("deleteCategoryId");
             Long id = Long.parseLong(param.getValue().toString());
             categoryBean.removeCategory(id);
         } catch (EntityDoesNotExistsException e) {
