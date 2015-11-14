@@ -46,6 +46,15 @@ public class ManagerBean {
         }
     }
     
+    public List<Manager> getAll() {
+        try {
+            List<Manager> managers = (List<Manager>) em.createNamedQuery("getAllManagers").getResultList();
+            return managers;
+        } catch (Exception e) {
+            throw new EJBException(e.getMessage());
+        }
+    }
+    
     public List<ManagerDTO> getAllManagers() {
         try {
             List<Manager> managers = (List<Manager>) em.createNamedQuery("getAllManagers").getResultList();

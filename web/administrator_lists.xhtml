@@ -77,7 +77,7 @@
                 <h:form>
 
                     <h:commandLink id="user_remove_link" value="Remove" actionListener="#{administratorManagerForAll.removeUser}">
-                        <f:param name="deleteUserId" id="deleteUserId" value="#{user.username}" />
+                        <f:param name="deleteUserId" id="deleteUserId" value="#{user.id}" />
                     </h:commandLink>
                 </h:form> 
             </h:column>

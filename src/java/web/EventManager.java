@@ -20,6 +20,7 @@ import exceptions.AttendantNotEnrolledException;
 import exceptions.EntityDoesNotExistsException;
 import exceptions.EventEnrolledException;
 import exceptions.EventNotEnrolledException;
+import exceptions.MyConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -321,19 +322,19 @@ public class EventManager {
             throw new EJBException(ex.getMessage());
         }
     }
-/*
-    public String updateEvent() {
+
+    public String updateEvent() throws EntityDoesNotExistsException, MyConstraintViolationException {
         try {
-            eventBean.updateEvent(currentEvent.getId(), currentEvent.getName(),currentEvent.getStartDate(),currentEvent.getFinishDate());
+            eventBean.updateEvent(currentEvent.getId(), currentEvent.getName(), currentEvent.getDescription(), currentEvent.getStartDate(),currentEvent.getFinishDate());
            // eventBean.updateEvent(evId, evName, evStartDate, evFinishDate);
             //escolher acção
             //return (String) "index?faces-redirect=true";
-            return "event_lists?faces_redirect=true";
+            return "event_lists?faces-redirect=true";
         } catch (NumberFormatException ex) {
             throw new EJBException(ex.getMessage());
         }
     }
-*/
+
     public void removeEvent(ActionEvent event) throws EntityDoesNotExistsException {
         try {
             UIParameter param = (UIParameter) event.getComponent().findComponent("deleteEventId");
@@ -366,9 +367,9 @@ public class EventManager {
         }
     }
 */
-    public List<CategoryDTO> getAllCategoriesOfCurrentEvent(Long id) {
+    public List<CategoryDTO> getAllCategoriesOfCurrentEvent() {
         try {
-            return eventBean.getAllCategoriesOfEvent(id);
+            return eventBean.getAllCategoriesOfEvent(currentEvent.getId());
         } catch (Exception ex) {
             throw new EJBException(ex.getMessage());
         }

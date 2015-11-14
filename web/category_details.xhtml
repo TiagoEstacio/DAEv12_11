@@ -20,7 +20,7 @@ and open the template in the editor.
                 <h:outputLabel for="usernameInputText" rendered="true" value=" Name:" />
                 <h:outputText
 
-                    value="#{categoryManager.currentCategoryM.name}" />
+                    value="#{administratorManagerForAll.currentCategory.name}" />
 
 
 
@@ -32,7 +32,7 @@ and open the template in the editor.
             <h:dataTable
                 var="event" 
                 summary="Table of ecentes"
-                value="#{categoryManager.currentCategoryM.events}"
+                value="#{administratorManagerForAll.allCategoryEvents}"
                 rules="all"
                 cellpadding="10">
                 <h:column>

@@ -5,6 +5,7 @@
  */
 package web;
 
+import dtos.CategoryDTO;
 import ejbs.AdministratorBean;
 import ejbs.CategoryBean;
 import entities.Administrator;
@@ -63,10 +64,21 @@ public class CategoryManager {
     private Event currentEventM;
     private Administrator currentAdministratorM;
     private Category currentCategoryM;
+    
+    private CategoryDTO currentCategory;
+
+    
 
     public CategoryManager() {
+        currentCategory = new CategoryDTO();
     }
-   
+   public CategoryDTO getCurrentCategory() {
+        return currentCategory;
+    }
+
+    public void setCurrentCategory(CategoryDTO currentCategory) {
+        this.currentCategory = currentCategory;
+    }
     public Long getAdminId() {
         return adminId;
     }

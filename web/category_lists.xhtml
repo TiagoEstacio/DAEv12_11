@@ -61,7 +61,7 @@
                 <h:form>
                     <h:commandLink id="details" action="category_details?faces-redirect=true">
                         <h:outputText value="details" />
-                        <f:setPropertyActionListener target="#{categoryManager.currentCategoryM}" value="#{category}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentCategory}" value="#{category}" />
                     </h:commandLink>  
                 </h:form>
             </h:column>
@@ -73,7 +73,7 @@
                 <h:form>
                     <h:commandLink id="category_update_link" action="category_update?faces_redirect=true">
                         <h:outputText value="Update" />
-                        <f:setPropertyActionListener target="#{categoryManager.currentCategoryM}" value="#{category}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentCategory}" value="#{category}" />
                     </h:commandLink>
                 </h:form>
             </h:column>
@@ -85,7 +85,7 @@
                 <h:form>
 
                    
-                    <h:commandLink id="category_remove_link" value="Remove" actionListener="#{categoryManager.removeCategory}">
+                    <h:commandLink id="category_remove_link" value="Remove" actionListener="#{administratorManagerForAll.removeCategory}">
                         <f:param name="deleteCategoryId" id="deleteCategoryId" value="#{category.id}" />
                     </h:commandLink>
                 </h:form> 
