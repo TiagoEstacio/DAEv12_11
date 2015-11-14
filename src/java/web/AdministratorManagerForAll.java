@@ -1,5 +1,6 @@
 package web;
 
+import exceptions.PasswordValidationException;
 import dtos.AdministratorDTO;
 import dtos.AttendantDTO;
 import dtos.CategoryDTO;
@@ -116,7 +117,7 @@ public class AdministratorManagerForAll {
                     currentAdministrator.getEmail());
             return "administrator_lists?faces-redirect=true";
         }else{
-            
+            //TODO - NOT WORKING
             throw new PasswordValidationException("Password not equal to password confirmation.");
         }
         } catch (EntityDoesNotExistsException | MyConstraintViolationException e) {
