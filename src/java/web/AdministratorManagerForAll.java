@@ -255,6 +255,13 @@ public class AdministratorManagerForAll {
         }
     }
 
+    public int getManagerNumberEvents(Long managerId)throws EntityDoesNotExistsException{
+        if(eventBean.getManagerEvents(managerId).isEmpty()){
+            return 0;
+        } 
+        return eventBean.getManagerEvents(managerId).size();
+    }
+    
     public void removeManager(ActionEvent event) {
         try {
             UIParameter param = (UIParameter) event.getComponent().findComponent("managerId");
@@ -554,7 +561,7 @@ public class AdministratorManagerForAll {
                     currentEvent.getDescription(),
                     currentEvent.getStartDate(),
                     currentEvent.getStartDate());
-            return "event_list?faces-redirect=true";
+            return "event_lists?faces-redirect=true";
             
         } catch (EntityDoesNotExistsException | MyConstraintViolationException e) {
             FacesExceptionHandler.handleException(e, e.getMessage(), logger);

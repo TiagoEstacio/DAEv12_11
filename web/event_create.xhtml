@@ -20,7 +20,7 @@
                 <h:inputText 
                     id="nameInputText" 
                     required="true" 
-                    value="#{eventManager.evName}" 
+                    value="#{administratorManagerForAll.newEvent.name}" 
                     />
                 <h:message for="nameInputText" />
                 
@@ -28,13 +28,13 @@
                 <h:inputText 
                     id="descriptionInputText" 
                     required="true" 
-                    value="#{eventManager.evDescription}" />
+                    value="#{administratorManagerForAll.newEvent.description}" />
                 <h:message for="descriptionInputText" />
                 <h:outputLabel for="startdateInputText" rendered="true" value="Start Date: " />
                 <h:inputText 
                     id="startdateInputText" 
                     required="true" 
-                    value="#{eventManager.evStartDate}"
+                    value="#{administratorManagerForAll.newEvent.startDate}"
                     p:placeholder="dd/mm/yyyy hh:mm" />
                  
                  <h:message for="startdateInputText" />
@@ -42,7 +42,7 @@
                 <h:inputText 
                     id="finishdateInputText" 
                     required="true" 
-                    value="#{eventManager.evFinishDate}"
+                    value="#{administratorManagerForAll.newEvent.finishDate}"
                     p:placeholder="dd/mm/yyyy hh:mm" />
                 <h:message for="finihdateInputText" />
                 
@@ -52,8 +52,9 @@
             
             <h:selectManyCheckbox value="#{eventManager.categoriesSelected}"  layout="PageDirection" 
                                   styleClass="formLabelList"> 
-
-                <c:forEach var="list" items="#{categoryManager.allCategories}" > 
+            <h:selectManyCheckbox value="#{administratorManagerForAll.categoriesSelected}"  layout="PageDirection" 
+                                  styleClass="formLabelList"> 
+                    <c:forEach var="list" items="#{administratorManagerForAll.allCategories}" > 
                     <p>  <f:selectItem itemValue="#{list.name}" itemLabel="#{list.name}" /> </p>
                 </c:forEach> 
 

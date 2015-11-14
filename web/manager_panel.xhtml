@@ -44,7 +44,15 @@
                     <h:outputText value="#{user.email}" />
                 </h:form>
             </h:column>
-
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Number events" />
+                </f:facet>
+                <h:form>  
+                    <h:outputText value="#{administratorManagerForAll.getManagerNumberEvents(user.id)}" />  
+                </h:form>
+            </h:column>
 
             <h:column>
                 <f:facet name="header">
