@@ -63,6 +63,8 @@ public class EventBean {
         }
     }
      
+     
+     
     public Event getEventByName(String name) {
         try {
             Event event = new Event();
