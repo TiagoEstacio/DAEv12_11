@@ -41,7 +41,9 @@
                     <h:outputText value="Nº Attendants" />
                 </f:facet>
                 <h:form>
-                    <h:outputText value="#{categoryManager.getNumberAttendants(category.id)}" />
+                    
+                    <h:outputText value="#{administratorManagerForAll.getAllAttendantsOfCategory(category.id)}" />
+                    
                 </h:form>
             </h:column>
             <h:column>

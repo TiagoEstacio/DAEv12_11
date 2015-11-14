@@ -45,7 +45,7 @@ and open the template in the editor.
         <h:dataTable
             var="category" 
             summary="Table of users"
-            value="#{eventManager.currentEvent.categories}"
+            value="#{eventManager.allCategoriesOfCurrentEvent}"
             rules="all"
             cellpadding="10">
            
@@ -67,7 +67,7 @@ and open the template in the editor.
             <h:selectManyCheckbox value="#{eventManager.categoriesSelected}"  layout="PageDirection" 
                                   styleClass="formLabelList"> 
 
-                <c:forEach var="list" items="#{categoryManager.allCategories}" > 
+                <c:forEach var="list" items="#{administratorManagerForAll.allCategories}" > 
                     <p>  <f:selectItem itemValue="#{list.name}" itemLabel="#{list.name}" /> </p>
                 </c:forEach> 
 
@@ -76,7 +76,7 @@ and open the template in the editor.
 
             <br />
 
-            <h:commandButton value="Refresh" actionListener="#{eventManager.updateEventCategories()}"  />
+            <h:commandButton value="Refresh" actionListener="#{eventManager.updateEventCategories}"  />
             </h:form> 
 
 

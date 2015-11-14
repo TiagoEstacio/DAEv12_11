@@ -286,20 +286,17 @@ public class EventBean {
     }
 
     public List<CategoryDTO> getAllCategoriesOfEvent(Long id) throws EntityDoesNotExistsException{
-        System.out.println("CCCCCCCHHHHHHegou!!!111111");
-        System.out.println("ID: " + id);
-                
+       
         Event event = em.find(Event.class, id);
             if (event == null){
-                        System.out.println("CCCCCCCHHHHHHegou!!!");
-
+                       
                 throw new EntityDoesNotExistsException("There is no event with that id.");
             }
-                    System.out.println("CCCCCCCHHHHHHegou222222!!!");
-
+                 
         List<Category> eventCategories = event.getCategories();
         return categoriesToDTOs(eventCategories);
     }
+    
     
     EventDTO eventToDTO(Event event) {
         return new EventDTO(

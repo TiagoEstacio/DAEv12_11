@@ -1,4 +1,3 @@
-
 package web;
 
 import dtos.AdministratorDTO;
@@ -305,6 +304,17 @@ public class AdministratorManagerForAll {
         } catch (Exception e) {
             FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
             return null;
+        }
+    }
+    
+    public int getAllAttendantsOfCategory(long id) {
+        try {
+            
+            return categoryBean.getNumberofAttendants(id);
+           // return attendantBean.getAllAttendants();
+        } catch (Exception e) {
+            FacesExceptionHandler.handleException(e, "Unexpected error! Try again latter!", logger);
+            return 0;
         }
     }
 
@@ -740,4 +750,3 @@ public class AdministratorManagerForAll {
     */
     
  }
-

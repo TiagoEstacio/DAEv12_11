@@ -430,6 +430,9 @@ public class EventManager {
     
     public String updateEventCategories() throws EntityDoesNotExistsException, EventNotEnrolledException, EventEnrolledException {
         for (CategoryDTO cat : eventBean.getAllCategoriesOfEvent(currentEvent.getId())) {
+            System.out.println("Current Event: " + currentEvent.getId());
+            System.out.println("Cat: " + cat.getId());
+            
             eventBean.unrollEventInCategory(currentEvent.getId(), cat.getId());
         }
         eventBean.clearAllCategoriesInEvent(currentEvent.getId());
