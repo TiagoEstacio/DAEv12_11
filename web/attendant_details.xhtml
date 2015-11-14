@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Manager Details</title>
+        <title>Attendant Details</title>
     </h:head>
     <h:body>
         <h:panelGrid columns="2">
@@ -12,17 +12,17 @@
             <h:outputLabel for="username" value="Name: " />
             <h:outputText 
                 id="username"
-                value="#{administratorManagerForAll.currentManager.name}"/>
+                value="#{administratorManagerForAll.currentAttendant.name}"/>
 
             <h:outputLabel for="name" value="Username: " />
             <h:outputText 
                 id="name"
-                value="#{administratorManagerForAll.currentManager.username}"/>
+                value="#{administratorManagerForAll.currentAttendant.username}"/>
 
             <h:outputLabel for="email" value="Email: " />
             <h:outputText 
                 id="email"
-                value="#{administratorManagerForAll.currentManager.email}"/>
+                value="#{administratorManagerForAll.currentAttendant.email}"/>
 
         </h:panelGrid>
 
@@ -30,13 +30,13 @@
 
         <h:dataTable
             var="event"
-            summary="List of all manager's events"
-            value="#{administratorManagerForAll.allEventsOfCurrentManager}"
+            summary="List of all attendant events"
+            value="#{administratorManagerForAll.allEventsOfCurrentAttendant}"
             rules="all"
             cellpadding="5">
 
             <f:facet name="header">
-                <h:outputText value="Manager's Event" />
+                <h:outputText value="Attendant's Events" />
             </f:facet>
             <h:column>
                 <f:facet name="header">
@@ -54,13 +54,6 @@
 
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="State" />
-                </f:facet>
-                <h:outputText value="#{event.openForEnroll}" />
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">
                     <h:outputText value="Start Date" />
                 </f:facet>
                 <h:outputText value="#{event.startDate}" />
@@ -72,33 +65,21 @@
                 </f:facet>
                 <h:outputText value="#{event.finishDate}" />
             </h:column>
-
+            
             <h:column>
                 <f:facet name="header">
-                    <h:outputText value="Number of Attendants" />
-                    <h:outputText value="#{event.finishDate}" />
+                    <h:outputText value="Event open for presence" />
                 </f:facet>
+                <h:outputText value="#{event.openForEnroll}" />
             </h:column>
-            <h:column>
-                <h:form>
-                    <h:commandLink id="details" action="event_add_attendants?faces-redirect=true">
-                        <h:outputText value="Add atendants" />
-                        <f:setPropertyActionListener target="#{eventManager.currentEvent}" value="#{event}" />
-                    </h:commandLink>
-                </h:form>                
-            </h:column> 
 
         </h:dataTable>
 
         <br/>
         <hr/>
 
-
-        <h:form>                  
-            <h:commandLink
-                id="return"
-                value="Return"
-                action="index?faces-redirect=true" />
+        <h:form>
+            <h:commandButton value="Back" action="attendant_lists.xhtml?faces-redirect=true" />	
         </h:form>
 
         <h:messages errorStyle="color: red" />        

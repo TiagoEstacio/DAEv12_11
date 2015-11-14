@@ -96,7 +96,7 @@
                     <h:outputText value="updateCategories" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="updatecategories" action="event_categories_update?faces-redirect=true">
+                    <h:commandLink id="updatecategories" action="event_categories-update?faces-redirect=true">
                         <h:outputText value="Update Categories" />
                         <f:setPropertyActionListener target="#{eventManager.currentEvent}" value="#{event}" />
                     </h:commandLink>  
@@ -119,7 +119,7 @@
 
 
         <h:form>
-            <h:commandButton value="Back" action="administrator_panel?faces_redirect=true" />	
+            <h:commandButton value="Back" action="administrator_panel?faces-redirect=true" />	
         </h:form>
     </h:body>
 </html>
