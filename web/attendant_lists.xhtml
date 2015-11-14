@@ -44,6 +44,15 @@
                     <h:outputText value="#{user.email}" />
                 </h:form>
             </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Number events" />
+                </f:facet>
+                <h:form>  
+                    <h:outputText value="#{administratorManagerForAll.getAttendantNumberEvents(user.id)}" />    
+                </h:form>
+            </h:column>
 
 
             <h:column>
@@ -51,9 +60,9 @@
                     <h:outputText value="Details" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="detais" action="_">
+                    <h:commandLink id="detais" action="attendant_details?faces-redirect=true">
                         <h:outputText value="details" />
-                        <f:setPropertyActionListener target="#{attendantManager}" value="#{user}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentAttendant}" value="#{user}" />
                     </h:commandLink>  
                 </h:form>
             </h:column>
@@ -63,9 +72,9 @@
                     <h:outputText value="Update" />
                 </f:facet>
                 <h:form>
-                    <h:commandLink id="user_update_link" action="_">
+                    <h:commandLink id="user_update_link" action="attendant_update?faces-redirect=true">
                         <h:outputText value="Update" />
-                        <f:setPropertyActionListener target="#{attendantManager}" value="#{user}" />
+                        <f:setPropertyActionListener target="#{administratorManagerForAll.currentAttendant}" value="#{user}" />
                     </h:commandLink>
                 </h:form>
             </h:column>
@@ -75,16 +84,15 @@
                     <h:outputText value="Remove" />
                 </f:facet>
                 <h:form>
-
                     <h:commandLink id="user_remove_link" value="Remove" actionListener="#{administratorManagerForAll.removeUser}">
-                        <f:param name="deleteUserId" id="deleteUserId" value="#{user.username}" />
+                        <f:param name="deleteUserId" id="deleteUserId" value="#{user.id}" />
                     </h:commandLink>
                 </h:form> 
             </h:column>
         </h:dataTable>
         <hr></hr>
         <h:form>
-            <h:commandButton value="Back" action="administrator_panel?faces_redirect=true" />	
+            <h:commandButton value="Back" action="administrator_panel?faces-redirect=true" />	
         </h:form>
     </h:body>
 </html>
