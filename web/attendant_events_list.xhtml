@@ -8,6 +8,32 @@
     </h:head>
     <h:body>
         
+        <h3 style="color: green">My Details</h3>
+        <hr></hr>
+        
+        <h:panelGrid columns="2">
+
+            <h:outputLabel for="name" value="Name: " />
+            <h:outputText 
+                id="username"
+                value="#{administratorManagerForAll.currentAttendant.name}"/>
+
+            <h:outputLabel for="username" value="Username: " />
+            <h:outputText 
+                id="name"
+                value="#{administratorManagerForAll.currentAttendant.username}"/>
+
+            <h:outputLabel for="email" value="Email: " />
+            <h:outputText 
+                id="email"
+                value="#{administratorManagerForAll.currentAttendant.email}"/>
+
+        </h:panelGrid>
+        <br/> 
+        
+        <hr></hr>
+
+        
         <h3 style="color: green">My Events</h3>
 
         <hr></hr>
